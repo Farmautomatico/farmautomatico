@@ -1,12 +1,20 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title><%-title %></title>
-  <link rel="stylesheet" href="/css/style.css">
-  <% if (ENV_DEVELOPMENT) { %>
-    <script src="http://localhost:35729/livereload.js"></script>
-  <% } %>
-</head>
-<body>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%-title %></title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/typeahead.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+      <script src="/js/typeahead.bundle.js"></script>
+      <link rel="stylesheet" href="css/estilos_personalizados.css" />
+  </head>
+  <body>
+    <div class="row">
+        <div class="small-12 large-centered colums">
+            <h1 align="center"><%-title %></h1>
+        </div>
+    </div>

@@ -10,17 +10,19 @@ var DataTypes = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
 
-  var regiones = sequelize.define('regiones', {
+  var region = sequelize.define('region', {
     idregion: DataTypes.INTEGER,
     nombre: DataTypes.STRING
   }, {
     classMethods:    {
-			encontrar : function(){ return sequelize
-                  .query('SELECT * FROM comunas', { raw: true })
-                 // .then(function(filas){console.log(filas); return filas;}); 
-                } 
+	
+		  
+			encontrar : function(){ sequelize
+									.query('SELECT * FROM regiones', { raw: true })
+									.then(function(filas){console.log(filas); return filas;}); } 
+			
       }
   });
-	return regiones
+	return region
 
 };  
