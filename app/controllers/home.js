@@ -1,3 +1,4 @@
+
 var express = require('express'),
   router = express.Router(),
   db = require('../models');
@@ -8,12 +9,14 @@ module.exports = function (app) {
 
 
 router.get('/', function (req, res, next) {
-	
-		resu = db.regiones.encontrar();
-		console.log("resu is : "+resu);
+		//console.log(db.regiones);
+		db.regiones.sequelize.query('SELECT * FROM regiones', { raw: true }).then(function(filas){
+			
+			
+				console.log(filas);
 		var arreglo = [];
-		for(i=0;i<resu.length;i++){
-			arreglo.push(resu[i].nombre);
+		for(i=0;i<filas.length;i++){
+			arreglo.push(filas[1][i].nombre);
 		}
 			
 		 db.Article.findAll().then(function (articles) {
@@ -23,6 +26,8 @@ router.get('/', function (req, res, next) {
 		     articles: articles
    			});
 		});
+		 });
+
 });
 
    

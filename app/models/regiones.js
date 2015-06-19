@@ -16,8 +16,9 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods:    {
 			encontrar : function(){ sequelize
-									.query('SELECT * FROM regiones', { raw: true })
-									.spread(function(resul, m){console.log(resul); return resul;}); } 	
+                  .query('SELECT * FROM regiones', { raw: true })
+                 // .then(function(filas){console.log(filas); return filas;}); 
+                } 
       }
   });
 	return regiones

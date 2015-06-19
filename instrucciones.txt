@@ -30,6 +30,3 @@ Para la base de datos:
 Se llama mydb. Tiene tablas, de las cuales sólo se está usando las regiones, de la forma: {idregiones:int, nombre:varchar(45)}
 está en el archivo mydb.sql, hay que importarla.
 Para que funcione, el usuario es root y no tiene contraseña (que flojera).
-
-Actualmente el programa sólo imprime en la consola las tuplas de regiones, ya que no fui capaz de pasarle el retorno
-de esa consulta al controlador.
