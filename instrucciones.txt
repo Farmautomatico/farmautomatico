@@ -12,6 +12,8 @@ npm install -g yo
 instalar generator express, en la carpeta el comando:
 npm install generator-express
 
+npm install express-session
+
 yo además lo instalé globalmente, pero no es necesario.
 
 en la carpeta el comando:

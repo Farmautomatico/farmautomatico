@@ -24,12 +24,13 @@
       <br />
       <br />
     <div class="row">
+      <form method="POST" action="/">
       <div class="large-offset-2 large-8 medium-12 small-12 colums">
           <label>Seleccione su ciudad:</label>
-        <select id="seleccionar-ciudad">
-          <option value="Seleccione">Seleccione</option>
+        <select name = 'seleccionCiudad' id="seleccionar-ciudad">
+          <option name= 'ciudad' value="Seleccione">Seleccione</option>
           <% for(var i=0; i<ciudades.length; i++) {%>
-          <option value=""+<%= ciudades[i] %>><%= ciudades[i] %></option>
+          <option name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i] %></option>
           <% } %>
         </select>
         </div>
@@ -41,7 +42,7 @@
               <dd class="accordion-navigation"> 
                   <a onClick="onPanel(this);" id="panelnum1">¿Desea saber el especialista según su enfermedad?</a> 
                   <div id="panel1" class="content">
-                   <form onsubmit="return onEspecialista();">
+               <!--    <form onsubmit="return onEspecialista();">-->
                      <div class="row">
                       <div class="small-3 columns">
             <label for="right-label" class="right">Enfermedad:</label>
@@ -61,18 +62,19 @@
 
                         
                          <div class="small-2 columns">
-                             <input class="button postfix" type=submit id="especialista-submit" value="Ir" />
+                             <input class="button postfix" name="submit" type=submit id="especialista-submit" value="Al Especialista" />
                                                                                    <!-- onclick='return window.location.replace("especialista.html") -->
                             <!-- <a href="especialista.html" class="button postfix">Ir</a> -->
                         </div>
                          </div>
-                  </form>
+                 <!-- </form> -->
                   </div>
               </dd> 
               <dd class="accordion-navigation">
                   <a onClick="onPanel(this);" id="panelnum2">¿Desea saber información sobre centro médico o farmacia?</a> 
                   <div id="panel2" class="content">
-                  <form onSubmit="return checkCentroOFarm();">
+             <!--     <form method="POST" action="centromedicoofarm">-->
+                    <!--onSubmit="return checkCentroOFarm();"-->
                       <div class="row">
                                 <div class="large-9 columns">
                                   <label>Escoga qué desea buscar</label>
@@ -80,17 +82,17 @@
                                   <input type="radio" name="centroofarm" value="farmacia" id="farmacia"><label for="farmacia">Farmacias</label>
     </div>
                           <div class="small-2 columns">
-                              <input class="button postfix" type=submit id="centromofarm-submit" value="Ir" />
+                              <input class="button postfix" name="submit" type=submit id="centromofarm-submit" value="A mi Medico o Farmacia" />
                                                <!--  <a onClick="checkCentroOFarm(this);" href="" class="button postfix">Ir</a> -->
                         </div>
                     </div>
                       
-                </form>
+              <!--  </form>-->
                   </div> 
               </dd> 
               <dd class="accordion-navigation"> <a href="#panel3">¿Desea saber información sobre algún remedio?</a> 
                   <div id="panel3" class="content">
-                       <form onSubmit="return onRemedio();">
+                      <!-- <form onSubmit="return onRemedio();">-->
                      <div class="row">
                       <div class="small-3 columns">
             <label for="right-label" class="right">Remedio:</label>
@@ -99,15 +101,16 @@
                         <input type="text" id="remedio" placeholder="Ingrese el remedio a consultar">
                         </div>
                          <div class="small-2 columns">
-                             <input class="button postfix" type=submit id="remedio-submit" value="Ir" />
+                             <input class="button postfix" name="submit" type=submit id="remedio-submit" value="A los remedios" />
                           <!--  <a href="remedio.html" class="button postfix">Ir</a> -->
                         </div>
                     </div>
-                  </form>
+                  <!--</form>-->
                   </div> 
               </dd> 
           </dl>
       </div>
+    </form>
     </div>
       <br />
       <br />
