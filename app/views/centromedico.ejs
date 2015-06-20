@@ -29,7 +29,7 @@
       </div>
       
           
-              <form onSubmit="return especialistasPorCiudad();">
+              <form onSubmit="">
                   <div class="row collapse">
                     <div class="medium-offset-2 small-10 colums large-centered">
                   <div class="small-3 colums">
@@ -47,7 +47,19 @@
               </form>
       
       <div class="row" id="ListaCentrosMedicos">
-          
+          <div class="medium-offset-2 small-10 colums">
+                <ol>
+                <dl>
+                  <% for(var i in cmedicos) {%>
+                  <li><dt><%-cmedicos[i][0] %></dt></li>
+                  <dd>Direccion: <%-cmedicos[i][1] %></dd>
+                  <% for(var tel in cmedicos[i][2]) {%>
+                  <dd>Teléfono n° <%-tel %>: <%-cmedicos[i][2][tel] %></dd>
+                  <% } %>
+                  <% } %>
+                </dl>
+            </ol>
+        </div>
         </div>
     </div>
     
@@ -64,6 +76,7 @@
       $(document).foundation();
     </script>
       <script>
+      /*
       function especialistasPorCiudad() {
         var cadenaPub = '<div class="medium-offset-2 small-10 colums">' +
                 '<ol>' +
@@ -107,7 +120,7 @@
         }
         return false;
           
-      }
+      }*/
       
       </script>
   </body>
