@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
-  var centromedicos = sequelize.define('centromedicos', {
+  var centrosmedicos = sequelize.define('centrosmedicos', {
     idCentrosMedicos: DataTypes.INTEGER,
     nombre: DataTypes.STRING,
     ciudad: DataTypes.STRING,
@@ -8,14 +8,15 @@ module.exports = function (sequelize, DataTypes) {
     esPublico: DataTypes.BOOLEAN
   }, {
     classMethods:    {
-			encontrar : function(ciudadpasada){ return sequelize
-                  .findAll({ where: { ciudad: ciudadpasada} })
+			encontrar : function(v){ return sequelize
+                  .query('SELECT * FROM centrosmedicos WHERE ciudad = ?',
+                    { replacements: [v], type: sequelize.QueryTypes.SELECT })
                   }
                   //('SELECT * FROM centrosmedicos where \'ciudad='+ciudad+'\'', { raw: true })
                  // .then(function(filas){console.log(filas); return filas;}); 
       
       }
   });
-	return centromedicos
+	return centrosmedicos
 
 };  

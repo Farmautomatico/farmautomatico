@@ -7,10 +7,22 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/centromedico', function (req, res, next) {
+router.get('/centrosmedicos', function (req, res, next) {
 		//console.log(db.regiones);
-			//db.centrosmedicos.encontrar(37).then(function(resul){
-				var data=[
+			db.centrosmedicos.encontrar(37).then(function(resul){
+				var data=[];
+				for (var i in resul){
+					data.push([
+						resul[i].nombre,
+						resul[i].Direccion,
+						['123']
+						]
+						) 
+
+
+
+				}
+				/*var data=[
 				["Hospital borja",
 					 "calle hola",
 					['123', '456']
@@ -19,15 +31,15 @@ router.get('/centromedico', function (req, res, next) {
 					"calle chao",
 					['123']
 				]
-				];
-				console.log(JSON.stringify(data));
-				res.render('centromedico', {
+				];*/
+				console.log(data);
+				res.render('centrosmedicos', {
 		    	
 		    	title: "Farmautomático",
 		    	cmedicos: data
 
 		 		});
-			//})
+			})
 		    
 
 });   

@@ -27,6 +27,6 @@ no a crear nuevo directorio
 Luego copiar los archivos de este git y reemplazarlos por los otros.
 
 Para la base de datos:
-Se llama mydb. Tiene tablas, de las cuales sólo se está usando las regiones, de la forma: {idregiones:int, nombre:varchar(45)}
-está en el archivo mydb.sql, hay que importarla.
+Se llama mydb.
+está en el archivo mydb.sql, hay que importarla a "mydb".
 Para que funcione, el usuario es root y no tiene contraseña (que flojera).
