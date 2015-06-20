@@ -1,0 +1,32 @@
+instrucciones para ejecutarlo.
+
+Debido a que es virtualmente imposible subir los 8500 prácticamente de archivos que hay en el directorio (lo intenté,
+pero el programa se pegó y dió muchísimos errores), y como ya había un .gitignore que los ignoraba, los pasos para
+ejecutarlo son los siguientes:
+
+Instalar nodejs desde la página.
+
+instalar yeoman globalmente:
+npm install -g yo
+
+instalar generator express, en la carpeta el comando:
+npm install generator-express
+
+yo además lo instalé globalmente, pero no es necesario.
+
+en la carpeta el comando:
+yo express
+
+Las opciones son:
+no a crear nuevo directorio
+>MVC
+>EJS
+>None (ningún preprocesador css)
+>Mysql
+
+Luego copiar los archivos de este git y reemplazarlos por los otros.
+
+Para la base de datos:
+Se llama mydb.
+está en el archivo mydb.sql, hay que importarla a "mydb".
+Para que funcione, el usuario es root y no tiene contraseña (que flojera).

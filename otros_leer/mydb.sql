@@ -52,11 +52,12 @@ DROP TABLE IF EXISTS `centrosmedicos`;
 CREATE TABLE `centrosmedicos` (
   `idCentrosMedicos` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
-  `ciudad` varchar(45) DEFAULT NULL,
+  `ciudad` int(11) unsigned NOT NULL DEFAULT '0',
   `Direccion` varchar(100) DEFAULT NULL,
   `esPublico` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`idCentrosMedicos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idCentrosMedicos`),
+  KEY `cit_idx` (`ciudad`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +66,7 @@ CREATE TABLE `centrosmedicos` (
 
 LOCK TABLES `centrosmedicos` WRITE;
 /*!40000 ALTER TABLE `centrosmedicos` DISABLE KEYS */;
+INSERT INTO `centrosmedicos` VALUES (1,'ACHS ACONCAGUA - SEDE CABILDO',48,'Humeres 371',0),(2,'ACHS ACONCAGUA - SEDE LA LIGUA',59,'Portales 746',0),(3,'ACHS ACONCAGUA - SEDE LOS ANDES',66,'Av. Argentina 50',0),(4,'ACHS ACONCAGUA - SEDE SAN FELIPE',60,'San Martin 120',0),(5,'ACHS SAN ANTONIO - SEDE SAN ANTONIO',42,'Barros Luco 1575',0),(6,'ACHS VALPARAISO - SEDE VALPARAISO',34,'Edwards 150',0),(7,'ACHS VI├æA DEL MAR - SEDE LA CALERA',50,'Avenida Latorre 98',0),(8,'ACHS VI├æA DEL MAR - SEDE VI├æA DEL MAR',37,'7 Norte 550',0),(9,'ASOMEL ASOCIACION DE MEDICOS LTDA',34,'Colon 2020',0),(10,'ASOMEL DE RE├æACA',37,'Angamos 185 Of. 21',0);
 /*!40000 ALTER TABLE `centrosmedicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,6 +168,7 @@ CREATE TABLE `telefonocm` (
 
 LOCK TABLES `telefonocm` WRITE;
 /*!40000 ALTER TABLE `telefonocm` DISABLE KEYS */;
+INSERT INTO `telefonocm` VALUES ('2761551',1),('2711265',2),('2422797',3),('2511482',4),('2261000',5),('2206210',6),('2221686',7),('2657700',8),('2217194',9),('(32) 2890133',10),('2685758',10);
 /*!40000 ALTER TABLE `telefonocm` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -178,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-19  1:58:08
+-- Dump completed on 2015-06-20  4:14:38

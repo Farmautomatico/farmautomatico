@@ -1,33 +1,34 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'development';
-
+ 
+//port:3000
 var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'farmautomatico1'
+      name: 'farma1'
     },
     port: 3000,
-    db: 'mysql://localhost/farmautomatico1-development'
+    db: 'jdbc:mysql://localhost:3306/mydb'
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'farmautomatico1'
+      name: 'farma1'
     },
     port: 3000,
-    db: 'mysql://localhost/farmautomatico1-test'
+    db: 'mysql://localhost/farma1-test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'farmautomatico1'
+      name: 'farma1'
     },
     port: 3000,
-    db: 'mysql://localhost/farmautomatico1-production'
+    db: 'mysql://localhost/farma1-production'
   }
 };
 

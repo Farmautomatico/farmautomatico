@@ -21,7 +21,17 @@ var telefono;
 router.get('/centrosmedicos', function (req, res, next) {
 	var indexCiudad = seleccity;
 	console.log(indexCiudad);
-		db.centrosmedicos.encontrarPrivados(indexCiudad).then(function(resul){
+	console.log(req.query);
+	switch(req.query.centrosMedicos){
+		case 'Privados' : db.centrosmedicos.encontrarPrivados(indexCiudad).then(callbackmain);
+					break;
+		case 'Publicos'  : db.centrosmedicos.encontrarPublicos(indexCiudad).then(callbackmain);
+					break;
+		default:   db.centrosmedicos.encontrarTodos(indexCiudad).then(callbackmain);
+						break;
+
+	}
+		function callbackmain(resul){
 		var data=[],
 		telef = [];
 		console.log(resul);
@@ -65,5 +75,5 @@ router.get('/centrosmedicos', function (req, res, next) {
     	cmedicos: data
 
  		});
-	})
-});   
+	}
+});
