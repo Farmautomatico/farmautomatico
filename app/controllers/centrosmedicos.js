@@ -20,21 +20,22 @@ module.exports = function(app) {
 
     var telefono;
     router.get('/centrosmedicos', function(req, res, next) {
-        //var indexCiudad = ciudad;
+        console.log(req);
+        var indexCiudad = ciudad;
         //console.log(indexCiudad);
         //console.log(req);
-        console.log(db);
+        
         console.log(req.query.centrosMedicos);
         if (req.query.centrosMedicos != undefined) {
             switch (req.query.centrosMedicos) {
                 case 'Privados':
-                    db.centrosmedicos.encontrarPrivados(37).then(callbackmain);
+                    db.centrosmedicos.encontrarPrivados(indexCiudad).then(callbackmain);
                     break;
                 case 'Publicos':
-                    db.centrosmedicos.encontrarPublicos(37).then(callbackmain);
+                    db.centrosmedicos.encontrarPublicos(indexCiudad).then(callbackmain);
                     break;
                 default:
-                    db.centrosmedicos.encontrarTodos(37).then(callbackmain);
+                    db.centrosmedicos.encontrarTodos(indexCiudad).then(callbackmain);
                     break;
             }
 

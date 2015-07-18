@@ -47,7 +47,7 @@ module.exports = function (app) {
         console.log("mi body está ready pal req:");
         console.log(req.body);
         
-        var ciudad = req.body.seleccionCiudad;
+        ciudad = req.body.seleccionCiudad;
         //res.send("hola");
         switch (req.body.submit) {
             case "Al Especialista":
