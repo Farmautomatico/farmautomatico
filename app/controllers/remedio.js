@@ -1,10 +1,11 @@
 var express = require('express'),
 	router = express.Router(),
+	remedioseleccionado;
 	db = require('../models');
 
 module.exports = function(app) {
 	app.use('/', router);
-};
+	
 
 router.get('/remedio', function(req, res, next) {
 	//console.log(db.regiones);
@@ -52,16 +53,19 @@ router.get('/remedio', function(req, res, next) {
 				res.render('remedio', {
 
 					title: "Farmautomático",
+					//remedio
 					nombre: resremedio[0].nombre,
 					indicaciones: resremedio[0].indicaciones,
 					contraindicaciones: resremedio[0].contraindicaciones,
 					conservacion: resremedio[0].conservacion,
 					interacciones: resremedio[0].interacciones,
 					otros: resremedio[0].otrosdatos,
+					//comentario
 					comentarios: comentarios,
 					fotos: fotos,
 					nombres_usuariosenc: nombres_usuariosenc,
 					idcomentarios: idcomentarios,
+					//usuario
 					usuarios_nombre: usuarios.nombre,
 					usuarios_idusuario: usuarios.idusuario,
 					usuarios_foto: usuarios.foto
@@ -80,3 +84,20 @@ router.get('/remedio', function(req, res, next) {
 
 
 });
+
+router.post('/remedio', function (req, res, next) {
+		/*console.log(req.body);
+		console.log(req.query);
+		console.log(req.params);
+  		console.log(remedioseleccionado);*/
+/*
+		{ seleccionComentario: '1',
+		  comentario: 'Este es mi comentario',
+		  submit: 'Comentar' }
+*/
+		db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.body.seleccionUsuarioComentario, req.body.comentario);
+
+		pagina = '/remedio?rem='+remedioseleccionado;
+        res.redirect(pagina);
+	});
+}

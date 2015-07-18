@@ -67,7 +67,8 @@ module.exports = function (app) {
             case "A los remedios":
                 console.log(req.body);
                 remediosel = req.body.remedios;
-                res.redirect('/remedio');
+                pagina = '/remedio?rem='+remediosel;
+                res.redirect(pagina);
                 break;
         }
      //   var ciudad = req.body.seleccionCiudad;

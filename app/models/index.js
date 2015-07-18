@@ -8,6 +8,7 @@ var fs = require('fs'),
 var sequelize = new Sequelize('farmautomatico', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
+  autoIncrement: true,
   pool: {
     max: 50,
     min: 0,
