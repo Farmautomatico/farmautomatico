@@ -8,15 +8,15 @@ module.exports = function (sequelize, DataTypes) {
     esPublico: DataTypes.BOOLEAN
   }, {
     classMethods:    {
-			encontrartodos : function(ciudadpasada){ return sequelize
+			encontrarTodos : function(ciudadpasada){ return sequelize
                   .query('select * from centrosmedicos join telefonocm on centrosmedicos.idCentrosMedicos=telefonocm.CentrosMedicos_idCentrosMedicos where centrosmedicos.comunas_idcomunas= ?',
                     { raw: true, replacements: [ciudadpasada], type: sequelize.QueryTypes.SELECT })
                   },
-      encontrarpublicos: function(v){ return sequelize
+      encontrarPublicos: function(ciudadpasada){ return sequelize
                   .query('select * from centrosmedicos join telefonocm on centrosmedicos.idCentrosMedicos=telefonocm.CentrosMedicos_idCentrosMedicos where centrosmedicos.comunas_idcomunas= ? && centrosmedicos.esPublico=1',
-                    { raw: true, replacements: [v], type: sequelize.QueryTypes.SELECT })
+                    { raw: true, replacements: [ciudadpasada], type: sequelize.QueryTypes.SELECT })
                   },
-      encontrarprivados: function(ciudadpasada){ return sequelize
+      encontrarPrivados: function(ciudadpasada){ return sequelize
                   .query('select * from centrosmedicos join telefonocm on centrosmedicos.idCentrosMedicos=telefonocm.CentrosMedicos_idCentrosMedicos where centrosmedicos.comunas_idcomunas= ? && centrosmedicos.esPublico=0',
                     { raw: true, replacements: [ciudadpasada], type: sequelize.QueryTypes.SELECT })
                   }

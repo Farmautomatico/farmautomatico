@@ -28,13 +28,13 @@ module.exports = function(app) {
         if (req.query.centrosMedicos != undefined) {
             switch (req.query.centrosMedicos) {
                 case 'Privados':
-                    db.centrosmedicos.encontrarprivados(37).then(callbackmain);
+                    db.centrosmedicos.encontrarPrivados(37).then(callbackmain);
                     break;
                 case 'Publicos':
-                    db.centrosmedicos.encontrarpublicos(37).then(callbackmain);
+                    db.centrosmedicos.encontrarPublicos(37).then(callbackmain);
                     break;
                 default:
-                    db.centrosmedicos.encontrartodos(37).then(callbackmain);
+                    db.centrosmedicos.encontrarTodos(37).then(callbackmain);
                     break;
             }
 

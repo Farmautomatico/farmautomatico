@@ -1,15 +1,17 @@
 module.exports = function (sequelize, DataTypes) {
 
-  var centrosmedicos = sequelize.define('centrosmedicos', {
-    idCentrosMedicos: DataTypes.INTEGER,
+  var remedios = sequelize.define('remedios', {
+    idremedios: DataTypes.INTEGER,
     nombre: DataTypes.STRING,
-    ciudad: DataTypes.STRING,
-    Direcion: DataTypes.STRING,
-    esPublico: DataTypes.BOOLEAN
+    indicaciones: DataTypes.STRING,
+    contraindicaciones: DataTypes.STRING,
+    conservacion: DataTypes.STRING,
+    interacciones: DataTypes.STRING,
+    otrosdatos: DataTypes.STRING
   }, {
     classMethods:    {
-      encontrarDatos : function(v){ return sequelize
-                  .query('select * from centrosmedicos join telefonocm on centrosmedicos.idCentrosMedicos=telefonocm.CentrosMedicos_idCentrosMedicos where centrosmedicos.ciudad= ?',
+      encontrarRemedios : function(v){ return sequelize
+                  .query('select * remedios where idremedios= ?',
                     { replacements: [v], type: sequelize.QueryTypes.SELECT })
                   }
                   //('SELECT * FROM centrosmedicos where \'ciudad='+ciudad+'\'', { raw: true })
@@ -17,6 +19,6 @@ module.exports = function (sequelize, DataTypes) {
       
       }
   });
-  return centrosmedicos
+  return remedios
 
 };  
