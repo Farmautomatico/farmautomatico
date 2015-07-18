@@ -46,7 +46,7 @@ module.exports = function (app) {
         //if(req.body.session.centroofarm == 'centromedico'){
         console.log("mi body está ready pal req:");
         console.log(req.body);
-        
+        remediosel = req.body.remedios;
         ciudad = req.body.seleccionCiudad;
         //res.send("hola");
         switch (req.body.submit) {

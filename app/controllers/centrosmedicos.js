@@ -20,7 +20,7 @@ module.exports = function(app) {
 
     var telefono;
     router.get('/centrosmedicos', function(req, res, next) {
-        console.log(req);
+        //console.log(req);
         var indexCiudad = ciudad;
         //console.log(indexCiudad);
         //console.log(req);

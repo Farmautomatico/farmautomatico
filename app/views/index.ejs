@@ -190,6 +190,38 @@
             //limit: 10
             });*/
           
+
+
+
+          /*$('.autocomplete-es .typeahead').typeahead({
+            name: 'es-tags',
+            remote: {
+                url: 'http://httpbin.org/post',
+                beforeSend: function (jqXhr, settings) {
+                    
+                    console.log('type is initially : ' + settings.type);
+                    console.log('data is initially : ' + settings.data);
+                    
+                    settings.type = 'POST';
+                    settings.data = { fields: ['tags.tag'], query: { prefix: {  tag: 'emp' } } }
+                    //settings.contentType = 'application/json; charset=utf-8';
+                    
+                    console.log('type is now : ' + settings.type);
+                    console.log('data is now : ' + settings.data);
+
+                    //settings.processData = false;
+                    //settings.traditional = true;
+
+                    return true;
+                },
+                filter: function (data) {
+                    console.log(data.data);
+                    console.log(data.data.fields[0]);
+                    //do actual processing...for now just looking for this not to throw an error
+                //    return data.hits.hits[0].fields.tags.tag;
+                }
+            }
+        });*/
         var substringMatcher = function(strs) {
           return function findMatches(q, cb) {
             var matches, substrRegex;
@@ -212,7 +244,7 @@
           };
         };
 
-      /*  var remedios = new Bloodhound({
+        /*var remedios = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.whitespace,
           queryTokenizer: Bloodhound.tokenizers.whitespace,
           // url points to a json file that contains an array of country names, see
@@ -223,8 +255,7 @@
         var enfermedades = ['Resfriado común', 'Cáncer', 'Sida', 'Depresión', 'Úlcera', 'Gastritis', 'Gastroenteritis', 'Cólon irritable', 'Hepatitis'
         ];
           
-        var remedios = ['Aspirina', 'Omeprazol', 'Atorvastatina', 'La pastilla del día después', 'Loratadina', 'Clorfenamina'
-        ];
+        var remedios = ['Aspirina', 'Omeprazol', 'Atorvastatina', 'La pastilla del día después', 'Loratadina', 'Clorfenamina'];
 
 
         $('#enfermedad').typeahead({
@@ -239,7 +270,7 @@
         limit: 10
         });
 
-        $('#remediostxtinput').typeahead({
+        /*$('#remediostxtinput').typeahead({
           hint: true,
           highlight: true,
           minLength: 1
@@ -248,7 +279,9 @@
           displayKey: 'value',
           source: substringMatcher(remedios),
           limit: 10
-        });
+        });*/
+        
+        //console.log(remedios);
         /*
          $('#remedio').typeahead({
         hint: true,
@@ -263,12 +296,12 @@
         });*/
           
       </script>
-      <style type="text/css">
+     <!-- <style type="text/css">
       #remediostxtinput .tt-dropdown-menu {
         max-height: 150px;
         overflow-y: auto;
       }
-      </style>
+      </style>-->
   </body>
 </html>
   
