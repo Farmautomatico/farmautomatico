@@ -7,28 +7,28 @@ var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'farma1'
+      name: 'farmautomatico'
     },
     port: 3000,
-    db: 'jdbc:mysql://localhost:3306/mydb'
+    db: 'jdbc:mysql://localhost:3306/farmautomatico'
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'farma1'
+      name: 'farmautomatico'
     },
     port: 3000,
-    db: 'mysql://localhost/farma1-test'
+    db: 'mysql://localhost/farmautomatico-test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'farma1'
+      name: 'farmautomatico'
     },
     port: 3000,
-    db: 'mysql://localhost/farma1-production'
+    db: 'mysql://localhost/farmautomatico-production'
   }
 };
 

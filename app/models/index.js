@@ -5,7 +5,7 @@ var fs = require('fs'),
   db = {};
 
 
-var sequelize = new Sequelize('mydb', 'root', '', {
+var sequelize = new Sequelize('farmautomatico', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
@@ -35,7 +35,7 @@ Object.keys(db).forEach(function (modelName) {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.Sequelize = Sequelize;    
 
 
 
