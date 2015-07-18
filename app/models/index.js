@@ -9,9 +9,9 @@ var sequelize = new Sequelize('farmautomatico', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
-    max: 5,
+    max: 50,
     min: 0,
-    idle: 100
+    idle: 10
   }
 });
 /*

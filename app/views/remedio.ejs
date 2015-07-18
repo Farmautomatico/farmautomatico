@@ -46,17 +46,41 @@
         <div class="row">
         <div class="medium-offset-2 small-10 columns">
             <p>Comentarios: <span data-tooltip aria-haspopup="true" class="has-tip" title="Por favor sea respetuoso">?</span></p>
-            <div class="small-2 columns">
-            <img src="imagen_perfil.jpg" class="right inline">
-            
-            </div>
-            <div class="small-10 columns">
-            <TEXTAREA NAME="comentario" class="postfix inline">Ingrese su comentario</TEXTAREA>
-
-            </div>
-            </div>
-        
+          <% for(var i=0; i<comentarios.length; i++) {%>
+          <div class="row">
+          <div class="medium-2 columns">
+            <%=nombres_usuariosenc[i]%>
+          <img src=<%=fotos[i]%> class="right inline">
         </div>
+        <div class="medium-10 columns">
+          <%=comentarios[i] %>
+        </div>
+      </div>
+        <% } %>
+          
+            
+            
+          </div>
+        </div>
+        <br />
+        <br />
+          <form method="POST" action="/">
+            <div class="small-6 small-centered columns">
+            <select name = 'seleccionCiudad' id="seleccionar-usuario">
+              <% for(i in usuarios_nombre) {%>
+              <!--<img src=<%=usuarios_foto[i]%> class="right inline"> -->
+              <option name= 'usuario' value=<%= usuarios_idusuario[i] %>> <%=usuarios_nombre[i]%></option>
+              <% } %>
+            </select>
+          </div>
+          <div class"small-6 small-centered columns">
+            <TEXTAREA NAME="comentario" class="postfix inline">Ingrese su comentario</TEXTAREA>
+            </div>
+            <div class="small-2 colums">
+            <input class="button postfix" name="submit" type=submit id="IngresarComentario" value="Comentar" />
+          </div>
+          </form>
+        
         
         <br />
       <br />
