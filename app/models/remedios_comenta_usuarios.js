@@ -14,7 +14,15 @@ module.exports = function (sequelize, DataTypes) {
       ingresarUnComentario: function(remedio, userid, comment) {
                   return sequelize
                   .query('insert into remedios_comenta_usuarios (remedios_nombre, usuario_idusuario, comentario) values (?, ?, ?);', {  replacements: [remedio, userid, comment], raw: true , type: sequelize.QueryTypes.INSERT})
-                }
+                },
+      encontrarUnComentario: function( nombreRemedio, idComentario) { return sequelize
+                      .query('select idcomentarios, remedios_nombre, idusuario, comentario, nombre as nombre_usuario, foto as foto_usuario from remedios_comenta_usuarios join usuarios on usuarios.idusuario=remedios_comenta_usuarios.usuario_idusuario where remedios_nombre=? && idcomentarios=?',
+                        {replacements: [nombreRemedio, idComentario], type: sequelize.QueryTypes.SELECT})
+                    },
+      ModificarUnComentario: function (idComentario, comentarioNuevo) { return sequelize
+                        .query ('update remedios_comenta_usuarios set comentario=? where idcomentarios=?;',
+                        {replacements: [comentarioNuevo, idComentario], raw: true})
+                      }
                 /*
                   remedios_comenta_usuarios
                   .create({remedios_nombre: remedio,  usuario_idusuario: userid, comentario: comment})

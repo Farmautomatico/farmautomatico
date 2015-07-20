@@ -7,6 +7,7 @@ var express = require('express'),
 var app = express();
 
 require('./config/express')(app, config);
+app.use('/public', express.static(__dirname + '/public'));
 
 db.sequelize
   .sync()
@@ -15,3 +16,4 @@ db.sequelize
   }).catch(function (e) {
     throw new Error(e);
   });
+

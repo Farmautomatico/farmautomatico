@@ -23,11 +23,11 @@ router.get('/remedio', function(req, res, next) {
 				comentarios = [],
 				idcomentarios = []
 			for (i in rescomentarios) {
-				fotos.push(rescomentarios[i].foto_usuario ? "imgsusuarios/" + rescomentarios[i].foto_usuario : "imgsusuarios/caradehuevo.jpg");
+				fotos.push(rescomentarios[i].foto_usuario ? "/public/imgsusuarios/" + rescomentarios[i].foto_usuario : "/public/imgsusuarios/caradehuevo.jpg");
 				nombres_usuariosenc.push(rescomentarios[i].nombre_usuario ? rescomentarios[i].nombre_usuario : "");
 				comentarios.push(rescomentarios[i].comentario ? rescomentarios[i].comentario : "");
 				console.log(rescomentarios[i].comentario);
-				idcomentarios.push(rescomentarios[i].idcomentarios)
+				idcomentarios.push("comentario/"+remediosel+"/"+rescomentarios[i].idcomentarios)
 			}
 			console.log(comentarios);
 			console.log(nombres_usuariosenc);
