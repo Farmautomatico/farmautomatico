@@ -44,8 +44,8 @@ module.exports = function (app) {
         //req.session.name = req.body.name;
         //req.session.ciudad = req.body.seleccionCiudad;
         //if(req.body.session.centroofarm == 'centromedico'){
-        console.log("mi body está ready pal req:");
-        console.log(req.body);
+        //console.log("mi body está ready pal req:");
+        //console.log(req.body);
         remediosel = req.body.remedios;
         ciudad = req.body.seleccionCiudad;
         //res.send("hola");
@@ -65,9 +65,9 @@ module.exports = function (app) {
                 
                 break;
             case "A los remedios":
-                console.log(req.body);
-                remediosel = req.body.remedios;
-                pagina = '/remedio?rem='+remediosel;
+                //console.log(req.body);
+                //remediosel = req.body.remedios;
+                pagina = '/remedio';
                 res.redirect(pagina);
                 break;
         }

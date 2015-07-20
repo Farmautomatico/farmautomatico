@@ -97,7 +97,7 @@ router.post('/remedio', function (req, res, next) {
 */
 		db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.body.seleccionUsuarioComentario, req.body.comentario);
 
-		pagina = '/remedio?rem='+remedioseleccionado;
+		pagina = '/remedio';
         res.redirect(pagina);
 	});
 }

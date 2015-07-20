@@ -23,7 +23,7 @@ module.exports = function(app) {
 
 				title: "Farmautomático",
 				nombreRemedio: req.params.nombreRemedio,
-				usuario_idusuario: rescomentarios[0].idusuario,
+				//usuario_idusuario: rescomentarios[0].idusuario,
 				fotousuario: foto_usuario,
 				usuario_nombre: rescomentarios[0].nombre_usuario,
 				comentario: rescomentarios[0].comentario,
@@ -56,7 +56,7 @@ module.exports = function(app) {
 		switch (req.body.submit) {
 			case 'Modificar': 	db.remedios_comenta_usuarios.ModificarUnComentario(idcomentario, req.body.comentario);
 								break;
-			case 'Eliminar':
+			case 'Eliminar': 	db.remedios_comenta_usuarios.EliminarUnComentario(idcomentario);
 								break;
 		}
 

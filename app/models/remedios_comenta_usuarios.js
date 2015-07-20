@@ -22,7 +22,13 @@ module.exports = function (sequelize, DataTypes) {
       ModificarUnComentario: function (idComentario, comentarioNuevo) { return sequelize
                         .query ('update remedios_comenta_usuarios set comentario=? where idcomentarios=?;',
                         {replacements: [comentarioNuevo, idComentario], raw: true})
+                      },
+      EliminarUnComentario: function (idComentario) { return sequelize
+                        .query('delete from remedios_comenta_usuarios where idcomentarios=?',
+                          {replacements: [idComentario], raw: true})
+
                       }
+
                 /*
                   remedios_comenta_usuarios
                   .create({remedios_nombre: remedio,  usuario_idusuario: userid, comentario: comment})

@@ -23,7 +23,7 @@
       <br />
     <div class="row">
       <div class="medium-offset-2 small-8 colums">
-        <p id="remedio"><%- nombreRemedio %>:</p>
+       <h3> <p id="remedio"><%- nombreRemedio %>:</p> </h3>
           
         
       </div>
@@ -38,17 +38,19 @@
 
          <form method="POST" action=<%=postAction%> >
           <div class="row">
-            <div class="small-6 small-centered columns">
-              id usuario: <%= usuario_idusuario %>
+            <div class="small-2 small-centered columns">
               nombre: <%=usuario_nombre%>
               <img src=<%=fotousuario%> class="right inline">
           </div>
           <div class"small-6 small-centered columns">
             <TEXTAREA NAME="comentario" class="postfix inline"><%= comentario %></TEXTAREA>
             </div>
-            <div class="small-2 colums">
+            <div class="small-3 colums">
             <input class="button postfix" name="submit" type=submit id="ModificarComentario" value="Modificar" />
+          </div>
+            <div class="small-3 colums">
             <input class="button postfix" name="submit" type=submit id="EliminarComentario" value="Eliminar" />
+
           </div>
         </div>
           </form>
