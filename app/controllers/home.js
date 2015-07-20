@@ -25,7 +25,7 @@ module.exports = function (app) {
             var indicesCiudades = [];
             var arreglociudades = [];
             for (i = 0; i < filas[1].length; i++) {
-                arreglociudades.push("Region: (" + filas[1][i].regiones_idregiones + "), " + filas[1][i].nombre);
+                arreglociudades.push("Region: (" + filas[1][i].regiones_idregiones + "), Comuna: " + filas[1][i].nombre);
                 indicesCiudades.push(filas[1][i].idcomunas);
             }
             
