@@ -11,12 +11,12 @@ var DataTypes = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
 
   var regiones = sequelize.define('regiones', {
-    idregion: DataTypes.INTEGER,
+    idregiones: DataTypes.INTEGER,
     nombre: DataTypes.STRING
   }, {
     classMethods:    {
 			encontrar : function(){ return sequelize
-                  .query('SELECT * FROM comunas', { raw: true })
+                  .query('SELECT * FROM regiones', { raw: true })
                  // .then(function(filas){console.log(filas); return filas;}); 
                 } 
       }

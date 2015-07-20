@@ -1,0 +1,69 @@
+<% include header %>
+<!--
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmautomático</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <link rel="stylesheet" href="css/estilos_personalizados.css" />
+  </head>
+  <body>
+    <div class="row">
+        <div class="small-12 large-centered colums">
+            <h1 align="center">Farmautomático</h1>
+        </div>
+      
+    </div>-->
+      <br />
+      <br />
+    <div class="row">
+      <div class="medium-offset-2 small-8 colums">
+       <h3> <p id="remedio"><%- nombreRemedio %>:</p> </h3>
+          
+        
+      </div>
+    </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+
+         <form method="POST" action=<%=postAction%> >
+          <div class="row">
+            <div class="small-2 small-centered columns">
+              nombre: <%=usuario_nombre%>
+              <img src=<%=fotousuario%> class="right inline">
+          </div>
+          <div class"small-6 small-centered columns">
+            <TEXTAREA NAME="comentario" class="postfix inline"><%= comentario %></TEXTAREA>
+            </div>
+            <div class="small-3 colums">
+            <input class="button postfix" name="submit" type=submit id="ModificarComentario" value="Modificar" />
+          </div>
+            <div class="small-3 colums">
+            <input class="button postfix" name="submit" type=submit id="EliminarComentario" value="Eliminar" />
+
+          </div>
+        </div>
+          </form>
+
+
+        <br />
+        <br />
+        <br />
+    
+    <div class="row">
+      <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
+        <a href="PreguntasFrecuentes.html" class="button">Preguntas Frecuentes</a>
+      </div>
+        
+ </body>
+</html>

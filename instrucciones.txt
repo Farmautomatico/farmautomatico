@@ -25,7 +25,8 @@ no a crear nuevo directorio
 >Mysql
 >Gulp
 
-también instalar mocha y mysql, no sé por qué, pero igual :v
+Luego de eso instalar mocha y mysql con:
+npm install mocha mysql
 
 para ejecutar, correr en la consola:
 gulp
@@ -33,17 +34,17 @@ gulp
 Luego copiar los archivos de este git y reemplazarlos por los otros.
 
 Para la base de datos:
-Se llama mydb.
-está en el archivo mydb.sql, hay que importarla a "mydb".
+Se llama farmautomatico.
+está en el archivo farmautomatico.sql, hay que importarla a "farmautomatico".
 Para que funcione, el usuario es root y no tiene contraseña (que flojera).
 Para importarla es entrando a mysql:
 mysql -u root
 luego crear la base de datos:
-create database mydb
+create database farmautomatico
 entrar:
-use mydb
+use farmautomatico
 y llenarla con los datos:
-source C:\Usuarios\Erick\farmautomatico1\mydb.sql
+source C:\Usuarios\Erick\farmautomatico1\farmautomatico.sql
 (o la dirección donde esté, se arrastra a la terminal).
 
 Con todo eso debería funcionar.

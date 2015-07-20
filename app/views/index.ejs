@@ -94,13 +94,13 @@
                   <div id="panel3" class="content">
                       <!-- <form onSubmit="return onRemedio();">-->
                      <div class="row">
-                      <div class="small-3 columns">
+                      <div class="small-2 columns">
             <label for="right-label" class="right">Remedio:</label>
                     </div>
                         <div class="small-6 columns">
-                        <input type="text" id="remedio" placeholder="Ingrese el remedio a consultar">
+                        <input class="typeahead tt-dropdown-menu" type="text" id="remediostxtinput" name="remedios" placeholder="Ingrese el remedio a consultar">
                         </div>
-                         <div class="small-2 columns">
+                         <div class="small-4 columns">
                              <input class="button postfix" name="submit" type=submit id="remedio-submit" value="A los remedios" />
                           <!--  <a href="remedio.html" class="button postfix">Ir</a> -->
                         </div>
@@ -190,35 +190,72 @@
             //limit: 10
             });*/
           
-          var substringMatcher = function(strs) {
-        return function findMatches(q, cb) {
-        var matches, substrRegex;
 
-        // an array that will be populated with substring matches
-        matches = [];
 
-        // regex used to determine if a string contains the substring `q`
-        substrRegex = new RegExp(q, 'i');
 
-        // iterate through the pool of strings and for any string that
-        // contains the substring `q`, add it to the `matches` array
-        $.each(strs, function(i, str) {
-        if (substrRegex.test(str)) {
-        // the typeahead jQuery plugin expects suggestions to a
-        // JavaScript object, refer to typeahead docs for more info
-        matches.push({ value: str });
-        }
-        });
+          /*$('.autocomplete-es .typeahead').typeahead({
+            name: 'es-tags',
+            remote: {
+                url: 'http://httpbin.org/post',
+                beforeSend: function (jqXhr, settings) {
+                    
+                    console.log('type is initially : ' + settings.type);
+                    console.log('data is initially : ' + settings.data);
+                    
+                    settings.type = 'POST';
+                    settings.data = { fields: ['tags.tag'], query: { prefix: {  tag: 'emp' } } }
+                    //settings.contentType = 'application/json; charset=utf-8';
+                    
+                    console.log('type is now : ' + settings.type);
+                    console.log('data is now : ' + settings.data);
 
-        cb(matches);
+                    //settings.processData = false;
+                    //settings.traditional = true;
+
+                    return true;
+                },
+                filter: function (data) {
+                    console.log(data.data);
+                    console.log(data.data.fields[0]);
+                    //do actual processing...for now just looking for this not to throw an error
+                //    return data.hits.hits[0].fields.tags.tag;
+                }
+            }
+        });*/
+        var substringMatcher = function(strs) {
+          return function findMatches(q, cb) {
+            var matches, substrRegex;
+
+            // an array that will be populated with substring matches
+            matches = [];
+
+            // regex used to determine if a string contains the substring `q`
+            substrRegex = new RegExp(q, 'i');
+
+            // iterate through the pool of strings and for any string that
+            // contains the substring `q`, add it to the `matches` array
+            $.each(strs, function(i, str) {
+              if (substrRegex.test(str)) {
+                matches.push({value: str});
+              }
+            });
+
+            cb(matches);
+          };
         };
-        };
+
+        /*var remedios = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.whitespace,
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          // url points to a json file that contains an array of country names, see
+          // https://github.com/twitter/typeahead.js/blob/gh-pages/data/remedios.json
+          prefetch: 'json/remedios.json'
+        });*/
 
         var enfermedades = ['Resfriado común', 'Cáncer', 'Sida', 'Depresión', 'Úlcera', 'Gastritis', 'Gastroenteritis', 'Cólon irritable', 'Hepatitis'
         ];
           
-        var remedios = ['Aspirina', 'Omeprazol', 'Atorvastatina', 'La pastilla del día después', 'Loratadina', 'Clorfenamina'
-        ];
+        var remedios = ['Aspirina', 'Omeprazol', 'Atorvastatina', 'La pastilla del día después', 'Loratadina', 'Clorfenamina'];
 
 
         $('#enfermedad').typeahead({
@@ -232,7 +269,21 @@
         source: substringMatcher(enfermedades),
         limit: 10
         });
-          $('#remedio').typeahead({
+
+        /*$('#remediostxtinput').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 1
+        }, {
+          name: 'remediostxtinput',
+          displayKey: 'value',
+          source: substringMatcher(remedios),
+          limit: 10
+        });*/
+        
+        //console.log(remedios);
+        /*
+         $('#remedio').typeahead({
         hint: true,
         highlight: true,
         minLength: 1
@@ -242,8 +293,15 @@
         displayKey: 'value',
         source: substringMatcher(remedios),
         limit: 10
-        });
+        });*/
           
       </script>
+     <!-- <style type="text/css">
+      #remediostxtinput .tt-dropdown-menu {
+        max-height: 150px;
+        overflow-y: auto;
+      }
+      </style>-->
   </body>
 </html>
+  
