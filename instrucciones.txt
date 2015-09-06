@@ -1,32 +1,15 @@
 instrucciones para ejecutarlo.
 
-Debido a que es virtualmente imposible subir los 9000 pr·cticamente de archivos que hay en el directorio node_modules
-(lo intentÈ, pero el programa se pegÛ y diÛ muchÌsimos errores), y como ya habÌa un .gitignore que los ignoraba, 
+Debido a que es virtualmente imposible subir los 9000 pr√°cticamente de archivos que hay en el directorio node_modules
+(lo intent√©, pero el programa se peg√≥ y di√≥ much√≠simos errores), y como ya hab√≠a un .gitignore que los ignoraba, 
 los pasos para ejecutarlo son los siguientes:
 
-Instalar nodejs desde la p·gina.
+Instalar nodejs desde la p√°gina.
 
-instalar yeoman globalmente:
-npm install -g yo
+entrar a la carpeta con cd <carpeta>
 
-instalar generator express, en la carpeta el comando:
-npm install generator-express
-
-yo adem·s lo instalÈ globalmente, pero no es necesario supongo.
-
-en la carpeta el comando:
-yo express
-
-Las opciones son:
-no a crear nuevo directorio
->MVC
->EJS
->None (ning˙n preprocesador css)
->Mysql
->Gulp
-
-Luego de eso instalar mocha y mysql con:
-npm install mocha mysql
+instalas las dependencias con:
+npm install
 
 para ejecutar, correr en la consola:
 gulp
@@ -35,8 +18,8 @@ Luego copiar los archivos de este git y reemplazarlos por los otros.
 
 Para la base de datos:
 Se llama farmautomatico.
-est· en el archivo farmautomatico.sql, hay que importarla a "farmautomatico".
-Para que funcione, el usuario es root y no tiene contraseÒa (que flojera).
+est√° en el archivo farmautomatico.sql, hay que importarla a "farmautomatico".
+Para que funcione, el usuario es root y no tiene contrase√±a (que flojera).
 Para importarla es entrando a mysql:
 mysql -u root
 luego crear la base de datos:
@@ -45,6 +28,6 @@ entrar:
 use farmautomatico
 y llenarla con los datos:
 source C:\Usuarios\Erick\farmautomatico1\farmautomatico.sql
-(o la direcciÛn donde estÈ, se arrastra a la terminal).
+(o la direcci√≥n donde est√©, se arrastra a la terminal).
 
-Con todo eso deberÌa funcionar.
+Con todo eso deber√≠a funcionar.
