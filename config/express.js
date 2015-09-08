@@ -4,6 +4,7 @@ var glob = require('glob');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('cookie-session');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
@@ -23,6 +24,7 @@ module.exports = function(app, config) {
     extended: true
   }));
   app.use(cookieParser());
+  app.use(session({secret: 'farmautomatico'}));
   app.use(compress());
   //app.use(express.static(config.root + '/public'));
   app.use('/public', express.static(config.root + '/public'));
@@ -38,7 +40,7 @@ module.exports = function(app, config) {
     err.status = 404;
     next(err);
   });
-  
+
   if(app.get('env') === 'development'){
     app.use(function (err, req, res, next) {
       res.status(err.status || 500);

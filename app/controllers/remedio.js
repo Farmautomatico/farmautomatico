@@ -5,11 +5,11 @@ var express = require('express'),
 
 module.exports = function(app) {
 	app.use('/', router);
-	
+
 
 router.get('/remedio', function(req, res, next) {
 	//console.log(db.regiones);
-	remedioseleccionado = remediosel;
+	remedioseleccionado = req.session.remedio;
 	db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
 		//var nombreRemedio = resremedio[0].nombre;
 
@@ -62,6 +62,7 @@ router.get('/remedio', function(req, res, next) {
 					otros: resremedio[0].otrosdatos,
 					//comentario
 					comentarios: comentarios,
+					usuarioingresado: req.session.name,
 					fotos: fotos,
 					nombres_usuariosenc: nombres_usuariosenc,
 					idcomentarios: idcomentarios,

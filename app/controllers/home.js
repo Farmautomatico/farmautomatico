@@ -4,7 +4,7 @@ var express = require('express'),
     db = require('../models');
 
 module.exports = function (app) {
-    
+
     //var session = require('express-session');
     var bodyParser = require('body-parser');
     app.use(bodyParser.json());
@@ -15,12 +15,12 @@ module.exports = function (app) {
   saveUninitialized: true
 }));*/
 	app.use('/', router);
-    
+
     router.get('/', function (req, res, next) {
         //console.log(db.comunas);
         db.comunas.encontrar().then(function (filas) {
-            
-            
+
+
             console.log(filas);
             var indicesCiudades = [];
             var arreglociudades = [];
@@ -28,9 +28,9 @@ module.exports = function (app) {
                 arreglociudades.push("Region: (" + filas[1][i].regiones_idregiones + "), Comuna: " + filas[1][i].nombre);
                 indicesCiudades.push(filas[1][i].idcomunas);
             }
-            
+
             res.render('index', {
-                
+
                 title: "Farmautomático",
                 indices : indicesCiudades,
                 ciudades: arreglociudades
@@ -38,9 +38,9 @@ module.exports = function (app) {
         });
 
     });
-    
+
     router.post('/', function (req, res, next) {
-        
+
         //req.session.name = req.body.name;
         //req.session.ciudad = req.body.seleccionCiudad;
         //if(req.body.session.centroofarm == 'centromedico'){
@@ -62,29 +62,26 @@ module.exports = function (app) {
                         res.redirect('/centrosmedicos');
                         //res.render('centrosmedicos', {ciudad: req.body.seleccionCiudad})
                 }
-                
+
                 break;
             case "A los remedios":
                 //console.log(req.body);
                 //remediosel = req.body.remedios;
-                pagina = '/remedio';
+                pagina = '/login';
                 res.redirect(pagina);
                 break;
         }
      //   var ciudad = req.body.seleccionCiudad;
 
        // res.redirect('/centrosmedicos');
-        
+
         //console.log(req.session.seleccionCiudad);
         //res.send(req.session.seleccionCiudad);
         //res.redirect('/error');
 
       	//next();
-      
- 
+
+
 	//}
     })
 };
-
-
-
