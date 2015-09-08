@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <head>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+        <link href="css/roboto.min.css" rel="stylesheet">
+        <link href="css/material.min.css" rel="stylesheet">
+        <link href="css/ripples.min.css" rel="stylesheet">
+        <link href="css/estilos_personalizados.css" rel="stylesheet">
+    </head>
+
+    <body>
+      <br>
+      <br>
+      <div class="row row-centered">
+        <div class="col-xs-12 col-centered">
+          <img id="logo" src="images/logo.jpg" alt="logo" />
+          <!--<h1 align="center">Farmautomático</h1>-->
+        </div>
+      </div>
+      <br>
+      <div class="row row-centered">
+        <div class="col-xs-12 col-sm-12 col-lg-7 col-centered">
+          <form action="/" method="post">
+            <label for="seleccionar-ciudad">Seleccione su ciudad:</label>
+          <select onchange="cambioSelect(this);" class="form-control" name='seleccionCiudad' id="seleccionar-ciudad">
+            <option name= 'ciudad' value="Seleccione">Seleccione</option>
+            <% for(var i=0; i<ciudades.length; i++) {%>
+            <option name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i] %></option>
+            <% } %>
+          </select>
+          </form>
+
+        </div>
+      </div>
+
+      <br>
+      <div class="row row-centered">
+        <div class="col-xs-12 col-sm-12 col-lg-10 col-centered">
+          <div class="panel-group accordions" id="accordion">
+          	<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+                          <a onclick="onPanel(this);" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1" id="linkpanelnum1">¿Desea saber el especialista según su enfermedad?</a>
+          			</h4>
+          		</div>
+          		<div id="panel1" class="panel-collapse collapse abrirConCiudad">
+          			<div class="panel-body">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                      <label for="right-label" class="control-label">Ingrese su enfermedad:
+                      <input class="form-control" type="text" id="enfermedad" placeholder="Mi enfermedad">
+                      </label>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                      <label  for="right-label" class="control-label">Edad:
+                      <select class="form-control" id="seleccionar-edad">
+
+
+                      </select>
+                      </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                      <input class="btn btn-primary" name="submit" type=submit id="especialista-submit" value="Al Especialista" />
+
+                    </div>
+                  </div>
+                  <!-- más cosas-->
+          			</div>
+          		</div>
+              </div>
+          	<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+                          <a onclick="onPanel(this);" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2" id="linkpanelnum2">¿Desea saber información sobre centro médico o farmacia?</a>
+          			</h4>
+          		</div>
+          		<div id="panel2" class="panel-collapse collapse abrirConCiudad">
+          			<div class="panel-body">
+                  <div class="col-xs-12 col-sm-8">
+                    <label class="control-label">Escoga qué desea buscar</label>
+                    <div class="row">
+                      <div class="radio radio-primary">
+                        <label for="centromedico" class="control-label">
+                        <input type="radio" name="centroofarm" value="centromedico" id="centromedico">Centros Médicos</label>
+
+                      </div>
+                      <div class="radio radio-primary">
+                        <label for="farmacia" class="control-label">
+                        <input type="radio" name="centroofarm" value="farmacia" id="farmacia">Farmacias</label>
+
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="col-xs-12 col-sm-4">
+                    <input class="btn btn-primary" name="submit" type=submit id="centromofarm-submit" value="A mi Centro Medico o Farmacia" />
+
+                  </div>
+
+                          <!--Contents panel 2-->
+          			</div>
+          		</div>
+              </div>
+          	<div class="panel panel-default">
+          		<div class="panel-heading">
+          			<h4 class="panel-title">
+                          <a  class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3" id="linkpanelnum3">¿Desea saber información sobre algún remedio?</a>
+          			</h4>
+          		</div>
+          		<div id="panel3" class="panel-collapse collapse">
+          			<div class="panel-body">
+                  <div class="col-xs-12 col-sm-6">
+                    <label for="right-label" class="control-label">Ingrese el remedio a consultar:
+                    <input class="form-control" type="text" id="enfermedad" placeholder="Mi Remedio">
+                    </label>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <input class="btn btn-primary" name="submit" type=submit id="centromofarm-submit" value="Al remedio" />
+                  </div>
+                          <!-- Contents panel 3 -->
+          			</div>
+          		</div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-lg-offset-8 col-lg-4">
+          <a href="PreguntasFrecuentes.html" class="btn btn-primary">Preguntas Frecuentes</a>
+        </div>
+      </div>
+
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/ripples.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <script src="js/index_js.js"></script>
+
+    </body>
+
+</html>
