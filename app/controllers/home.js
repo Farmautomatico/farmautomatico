@@ -32,6 +32,7 @@ module.exports = function (app) {
             res.render('index', {
 
                 title: "Farmautomático",
+                controllerangular: "indexController",
                 indices : indicesCiudades,
                 ciudades: arreglociudades
             });
@@ -46,14 +47,17 @@ module.exports = function (app) {
         //if(req.body.session.centroofarm == 'centromedico'){
         //console.log("mi body está ready pal req:");
         //console.log(req.body);
-        remediosel = req.body.remedios;
+        console.log("body del index");
+        console.log(req.body);
+        //remediosel = req.body.remedios;
+        remediosel = req.body.remedioselec;
         ciudad = req.body.seleccionCiudad;
         //res.send("hola");
         switch (req.body.submit) {
             case "Al Especialista":
                 res.redirect('/especialista');
                 break;
-            case "A mi Medico o Farmacia":
+            case "A mi Centro Medico o Farmacia":
                 switch (req.body.centroofarm) {
                     case "farmacia":
                         res.redirect('/farmacia');
@@ -64,7 +68,7 @@ module.exports = function (app) {
                 }
 
                 break;
-            case "A los remedios":
+            case 'Al remedio':
                 //console.log(req.body);
                 //remediosel = req.body.remedios;
                 pagina = '/login';

@@ -1,16 +1,19 @@
 var express = require('express'),
+  //bodyParser = require('body-parser'),
 	router = express.Router(),
 	remedioseleccionado;
 	db = require('../models');
 
+
 module.exports = function(app) {
 	app.use('/', router);
+	//app.use(bodyParser.json());
 
 
 router.get('/login', function(req, res, next) {
 	//console.log(db.regiones);
-	console.log("params del login:");
-	console.log(remediosel);
+	console.log("body del login:");
+	console.log(req.body);
 				//remedioseleccionado = req.params.remediosel;
 
 				res.render('login', {
