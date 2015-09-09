@@ -1,4 +1,4 @@
-<% include header %>
+<% include header_antiguo %>
 <!--
 <!doctype html>
 <html class="no-js" lang="en">
@@ -17,18 +17,18 @@
         <div class="small-12 large-centered colums">
             <h1 align="center"><%-title %></h1>
         </div>
-      
+
     </div>-->
       <br />
       <br />
     <div class="row">
       <div class="medium-offset-2 small-8 colums">
         <p>Centros Médicos</p>
-          
-        
+
+
       </div>
-      
-          
+
+
               <form method="GET" action="centrosmedicos">
                   <div class="row collapse">
                     <div class="medium-offset-2 small-10 colums large-centered">
@@ -40,12 +40,12 @@
       <input type="radio" name="centrosMedicos" value="Privados" id="centMPriv"><label for="centMPriv">Privados</label>
                   </div>
                   <div class="small-2 colums">
-                  <input class="button postfix inline" type=submit id="centrosMed-submit" value="Ir" /> 
+                  <input class="button postfix inline" type=submit id="centrosMed-submit" value="Ir" />
                   </div>
                 </div>
                 </div>
               </form>
-      
+
       <div class="row" id="ListaCentrosMedicos">
           <div class="medium-offset-2 small-10 colums">
                 <ol>
@@ -62,11 +62,11 @@
         </div>
         </div>
     </div>
-    
-    
+
+
       <br />
       <br />
-    
+
     <div class="row">
       <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
         <a href="PreguntasFrecuentes.html" class="button">Preguntas Frecuentes</a>
@@ -89,8 +89,8 @@
                 '<dd>Teléfono: 87654321</dd>' +
                 '<li><dt>CESFAM N° 1 Valparaíso</dt></li>' +
                 '<dd>Dirección: Rodelillo 4444</dd>' +
-                '<dd>Teléfono: 1829394</dd>' +    
-                '</dl>' + 
+                '<dd>Teléfono: 1829394</dd>' +
+                '</dl>' +
             '</ol>' +
         '</div>';
           var cadenaPriv = '<div class="medium-offset-2 small-10 colums">' +
@@ -104,24 +104,24 @@
                 '<dd>Teléfono: 87654321</dd>' +
                 '<li><dt>Clínica dental UV</dt></li>' +
                 '<dd>Dirección: Playa ancha 1234</dd>' +
-                '<dd>Teléfono: 1829394</dd>' +    
-                '</dl>' + 
+                '<dd>Teléfono: 1829394</dd>' +
+                '</dl>' +
             '</ol>' +
         '</div>';
 
         if (document.getElementById('centMPub').checked) {
-           
+
             document.getElementById("ListaCentrosMedicos").innerHTML = cadenaPub;
-                
+
         }
         else if (document.getElementById('centMPriv').checked) {
-              document.getElementById("ListaCentrosMedicos").innerHTML = cadenaPriv; 
-              
+              document.getElementById("ListaCentrosMedicos").innerHTML = cadenaPriv;
+
         }
         return false;
-          
+
       }*/
-      
+
       </script>
   </body>
 </html>

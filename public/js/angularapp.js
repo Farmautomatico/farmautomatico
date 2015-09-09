@@ -9,7 +9,7 @@ angular.module('app')
     $http({
       method: 'POST',
       url: '/',
-      data: {remedioselec: $scope.remediosel, submit: "Al remedio"},
+      data: {remedioselec: $scope.remediosel, submit: "Al remedio", seleccionCiudad: $scope.ciudad},
       headers: {'Content-Type': 'application/json'}
     })
     .then(
@@ -19,4 +19,29 @@ angular.module('app')
         $window.location.href = landingUrl;
     }, function(err)    {console.log(err)})
   }
-}]);
+
+  $scope.controllerCMOFarm = function(){
+    $http({
+      method: 'POST',
+      url: '/',
+      data: {centroofarm: $scope.centroofarm, submit: "A mi Centro Medico o Farmacia"},
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(
+      function(succ) {
+        console.log(succ);
+        if($scope.centroofarm=='farmacia'){
+          var landingUrl = "http://" + $window.location.host + "/farmacia";
+        }
+        else if($scope.centroofarm=='centromedico'){
+        var landingUrl = "http://" + $window.location.host + "/centrosmedicos";
+        }
+        $window.location.href = landingUrl;
+    }, function(err)    {console.log(err)})
+  }
+
+  $scope.controllerEspecialista = function(){
+    var landingUrl = "http://" + $window.location.host + "/especialista";
+    $window.location.href = landingUrl;
+  }
+}])

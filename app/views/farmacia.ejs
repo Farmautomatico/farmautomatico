@@ -1,5 +1,5 @@
 
-<% include header %>
+<% include header_antiguo %>
 <!--
 <!doctype html>
 <html class="no-js" lang="en">
@@ -18,18 +18,18 @@
         <div class="small-12 large-centered colums">
             <h1 align="center">Farmautomático</h1>
         </div>
-      
+
     </div>-->
       <br />
       <br />
     <div class="row">
       <div class="medium-offset-2 small-8 colums">
         <p>Farmacias</p>
-          
-        
+
+
       </div>
-      
-          
+
+
               <form onSubmit="return getListafarmacias();">
                   <div class="row collapse">
                     <div class="medium-offset-2 small-10 colums large-centered">
@@ -38,8 +38,8 @@
                   </div>
                   <div class="small-5 colums">
                       <input type="radio" name="farmacias" value="todas" id="todas"><label for="todas">Todas</label><span data-tooltip aria-haspopup="true" class="has-tip" title="Todas, incluyendo las de turno">?</span>
-                          
-                
+
+
       <input type="radio" name="farmacias" value="deTurno" id="deTurno"><label for="deTurno">De turno</label> <span data-tooltip aria-haspopup="true" class="has-tip" title="Sólo las de turno, que atienden las 24 horas">?</span>
                   </div>
                 </div>
@@ -55,25 +55,25 @@
                      <option value="DrSimi">Sr Simi</option>
                     </select> <span data-tooltip aria-haspopup="true" class="has-tip" title="Todas es por defecto">?</span>
                     </div>
-                    
+
                       <div class="small-2 colums">
                       <input class="button postfix inline" type=submit id="farmacias-submit" value="Ir" />
-                      
+
                       </div>
-                  
+
                     </div>
                   </div>
               </form>
-      
+
       <div class="row" id="ListaFarmacias">
-          
+
         </div>
     </div>
-    
+
 
       <br />
       <br />
-    
+
     <div class="row">
       <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
         <a href="PreguntasFrecuentes.html" class="button">Preguntas Frecuentes</a>
@@ -96,8 +96,8 @@
                 '<dd>Teléfono: 87654321</dd>' +
                 '<li><dt>Cruz Verde</dt></li>' +
                 '<dd>Dirección: Rodelillo 4444</dd>' +
-                '<dd>Teléfono: 1829394</dd>' +    
-                '</dl>' + 
+                '<dd>Teléfono: 1829394</dd>' +
+                '</dl>' +
             '</ol>' +
         '</div>';
           var cadenadeTurno = '<div class="medium-offset-2 small-10 colums">' +
@@ -108,24 +108,24 @@
                 '<dd>Teléfono: 12345678</dd>' +
                 '<li><dt>Ahumada</dt></li>' +
                 '<dd>Dirección: Alameda 2234</dd>' +
-                '<dd>Teléfono: 87654321</dd>' +   
-                '</dl>' + 
+                '<dd>Teléfono: 87654321</dd>' +
+                '</dl>' +
             '</ol>' +
         '</div>';
 
         if (document.getElementById('todas').checked) {
-           
+
             document.getElementById("ListaFarmacias").innerHTML = cadenaTodas;
-                
+
         }
         else if (document.getElementById('deTurno').checked) {
-              document.getElementById("ListaFarmacias").innerHTML = cadenadeTurno; 
-              
+              document.getElementById("ListaFarmacias").innerHTML = cadenadeTurno;
+
         }
         return false;
-          
+
       }
-      
+
       </script>
   </body>
 </html>

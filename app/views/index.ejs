@@ -26,19 +26,19 @@
       <br>
       <div ng-app="app">
 
+      <div ng-controller="indexController">
 
-      <div class="row row-centered">
+
+      <div class="row row-centered" >
         <div class="col-xs-12 col-sm-12 col-lg-7 col-centered">
           <form action="/" method="post">
             <label for="seleccionar-ciudad">Seleccione su ciudad:</label>
           <select onchange="cambioSelect(this);" class="form-control" name='seleccionCiudad' id="seleccionar-ciudad">
             <option name= 'ciudad' value="Seleccione">Seleccione</option>
             <% for(var i=0; i<ciudades.length; i++) {%>
-            <option name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i] %></option>
+            <option ng-model="ciudad" name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i]%></option>
             <% } %>
           </select>
-          </form>
-
         </div>
       </div>
 
@@ -70,7 +70,7 @@
                       </label>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                      <input class="btn btn-primary" name="submit" type=submit id="especialista-submit" value="Al Especialista" />
+                      <input class="btn btn-primary" name="submit" type=submit id="especialista-submit" value="Al Especialista" ng-click="controllerEspecialista()" />
 
                     </div>
                   </div>
@@ -82,7 +82,7 @@
           		<div class="panel-heading">
           			<h4 class="panel-title">
                           <a onclick="onPanel(this);" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2" id="linkpanelnum2">¿Desea saber información sobre centro médico o farmacia?</a>
-          			</h4>  
+          			</h4>
           		</div>
           		<div id="panel2" class="panel-collapse collapse abrirConCiudad">
           			<div class="panel-body">
@@ -91,12 +91,12 @@
                     <div class="row">
                       <div class="radio radio-primary">
                         <label for="centromedico" class="control-label">
-                        <input type="radio" name="centroofarm" value="centromedico" id="centromedico">Centros Médicos</label>
+                        <input type="radio" name="centroofarm" value="centromedico" id="centromedico" ng-model="centroofarm">Centros Médicos</label>
 
                       </div>
                       <div class="radio radio-primary">
                         <label for="farmacia" class="control-label">
-                        <input type="radio" name="centroofarm" value="farmacia" id="farmacia">Farmacias</label>
+                        <input type="radio" name="centroofarm" value="farmacia" id="farmacia" ng-model="centroofarm">Farmacias</label>
 
                       </div>
                     </div>
@@ -104,7 +104,7 @@
 
                   </div>
                   <div class="col-xs-12 col-sm-4">
-                    <input class="btn btn-primary" name="submit" type=submit id="centromofarm-submit" value="A mi Centro Medico o Farmacia" />
+                    <input class="btn btn-primary" name="submit" type=submit id="centromofarm-submit" value="A mi Centro Medico o Farmacia" ng-click="controllerCMOFarm()" />
 
                   </div>
 
@@ -119,7 +119,7 @@
           			</h4>
           		</div>
           		<div id="panel3" class="panel-collapse collapse">
-          			<div class="panel-body" ng-controller='indexController'>
+          			<div class="panel-body">
                   <div class="col-xs-12 col-sm-6">
                     <label for="right-label" class="control-label">Ingrese el remedio a consultar:
                     <input class="form-control" ng-model="remediosel" bs-options="remedio for remedio in remedios" placeholder="Ingrese el remedio" bs-typeahead type="text" id="remediostxtinput" name="remedios">
@@ -135,10 +135,11 @@
           </div>
         </div>
       </div>
-
+      </form>
+      </div>
       <div class="row">
         <div class="col-xs-12 col-lg-offset-8 col-lg-4">
-          <a href="PreguntasFrecuentes.html" class="btn btn-primary">Preguntas Frecuentes</a>
+          <a href="../../public/PreguntasFrecuentes.html" class="btn btn-primary">Preguntas Frecuentes</a>
         </div>
       </div>
       </div>
