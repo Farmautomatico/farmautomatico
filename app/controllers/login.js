@@ -27,7 +27,21 @@ router.get('/login', function(req, res, next) {
 
 
 router.post('/login', function (req, res, next) {
-		req.session.name = req.body.nombreusuario;
+
+
+		db.usuarios.encontrarUsuarios().then(function(users) {
+			for(i in users) {
+				if(req.body.nombreusuario==users[i].nombre && req.body.password==users[i].contrasena){
+					console.log(users[i].nombre);
+					req.session.name = users[i].idusuario;
+					req.session.remedio = remediosel;
+			  	res.redirect('/remedio');
+				}
+			}
+			req.session.name = undefined;
+			req.session.remedio = remediosel;
+			res.redirect('/remedio');
+		});
 
 		/*console.log(req.body);
 		console.log(req.query);
@@ -37,15 +51,13 @@ router.post('/login', function (req, res, next) {
 		{ seleccionComentario: '1',
 		  comentario: 'Este es mi comentario',
 		  submit: 'Comentar' }
-*/	console.log(req.body);
+*/
 		//nombre = req.body.nombre;
 		//remediosel = remedioseleccionado;
 		//app.set('remedio', remediosel);
 		//remedioseleccionado = remediosel;
-		req.session.remedio = remediosel;
+
 
 		//req.session.save(function(err){});
-		pagina = '/remedio';
-        res.redirect(pagina);
 	});
 }

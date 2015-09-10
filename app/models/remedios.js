@@ -12,12 +12,16 @@ module.exports = function (sequelize, DataTypes) {
       encontrarRemedios : function(v){ return sequelize
                   .query('select * from remedios where nombre=?',
                     { replacements: [v], type: sequelize.QueryTypes.SELECT })
+                  },
+      encontrarNombresRemedios : function(v){ return sequelize
+                  .query('select nombre from remedios',
+                    { type: sequelize.QueryTypes.SELECT })
                   }
                   //('SELECT * FROM centrosmedicos where \'ciudad='+ciudad+'\'', { raw: true })
-                 // .then(function(filas){console.log(filas); return filas;}); 
-      
+                 // .then(function(filas){console.log(filas); return filas;});
+
       }
   });
   return remedios
 
-};  
+};
