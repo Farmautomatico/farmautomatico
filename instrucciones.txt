@@ -10,6 +10,8 @@ entrar a la carpeta con cd <carpeta>
 
 instalas las dependencias con:
 npm install
+npm install cookie-session
+(cookie session no se instala sola -.-)
 
 para ejecutar, correr en la consola:
 gulp
