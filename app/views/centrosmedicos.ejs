@@ -1,4 +1,4 @@
-<% include header_antiguo %>
+<% include header %>
 <!--
 <!doctype html>
 <html class="no-js" lang="en">
@@ -19,38 +19,47 @@
         </div>
 
     </div>-->
-      <br />
-      <br />
-    <div class="row">
-      <div class="medium-offset-2 small-8 colums">
-        <p>Centros Médicos</p>
+<br/>
+<br/>
+<div class="row row-centered">
+  <div class="col-xs-12 col-centered">
+    <h3>Centros Médicos</h3>
 
+  </div>
 
+  <form action="centrosmedicos" method="GET">
+    <div class="row row-centered">
+      <div class="col-xs-12 col-sm-3">
+        <label class="inline">Seleccione:</label>
       </div>
+    </div>
+    <div class="row row-centered">
 
+      <div class="col-xs-12 col-centered">
 
-              <form method="GET" action="centrosmedicos">
-                  <div class="row collapse">
-                    <div class="medium-offset-2 small-10 colums large-centered">
-                  <div class="small-3 colums">
-                <label class="inline">Seleccione:</label>
-                  </div>
-                  <div class="small-4 colums">
-                      <input type="radio" name="centrosMedicos" value="Publicos" id="centMPub"><label for="centMPub">Públicos</label>
-      <input type="radio" name="centrosMedicos" value="Privados" id="centMPriv"><label for="centMPriv">Privados</label>
-                  </div>
-                  <div class="small-2 colums">
-                  <input class="button postfix inline" type=submit id="centrosMed-submit" value="Ir" />
-                  </div>
-                </div>
-                </div>
-              </form>
+        <div class="col-sm-5 col-xs-12">
+          <label for="centMPub" class="control-label">Públicos</label>
+          <input class="form-control" id="centMPub" name="centrosMedicos" type="radio" value="Publicos">
 
-      <div class="row" id="ListaCentrosMedicos">
-          <div class="medium-offset-2 small-10 colums">
-                <ol>
-                <dl>
-                  <% for(var i in cmedicos) {%>
+        </div>
+
+        <div class="col-sm-5 col-xs-12">
+          <label for="centMPriv" class="control-label">Privados</label>
+          <input class="form-control" id="centMPriv" name="centrosMedicos" type="radio" value="Privados">
+
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <input class="btn btn-primary" id="centrosMed-submit" type=submit value="Ir"/>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row row-centered" id="ListaCentrosMedicos">
+    <div class="col-xs-12 col-sm-9 col-centered">
+      <ol>
+        <dl>
+          <% for(var i in cmedicos) {%>
                   <li><dt><%-cmedicos[i][0] %></dt></li>
                   <dd>Direccion: <%-cmedicos[i][1] %></dd>
                   <% for(var tel in cmedicos[i][2]) {%>
@@ -67,13 +76,10 @@
       <br />
       <br />
 
-    <div class="row">
-      <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
-        <a href="PreguntasFrecuentes.html" class="button">Preguntas Frecuentes</a>
-      </div>
-
+  <% include PreguntasFrecuentes %>
     <script>
-      $(document).foundation();
+      //$(document).foundation();
+      $.material.init();
     </script>
       <script>
       /*

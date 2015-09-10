@@ -34,6 +34,7 @@ router.post('/login', function (req, res, next) {
 				if(req.body.nombreusuario==users[i].nombre && req.body.password==users[i].contrasena){
 					console.log(users[i].nombre);
 					req.session.name = users[i].idusuario;
+					req.session.username = req.body.nombreusuario;
 					req.session.remedio = remediosel;
 			  	res.redirect('/remedio');
 				}

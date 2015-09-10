@@ -71,7 +71,7 @@ module.exports = function (app) {
             case 'Al remedio':
                 //console.log(req.body);
                 //remediosel = req.body.remedios;
-                pagina = '/login';
+                pagina = '/remedio';
                 res.redirect(pagina);
                 break;
         }

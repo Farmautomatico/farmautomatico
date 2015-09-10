@@ -29,7 +29,8 @@
 <div class="row row-centered">
   <div class="medium-offset-2 small-8 colums">
     <p id="remedio">
-      nombre: <%=nombre%></p>
+      nombre:
+      <%=nombre%></p>
 
   </div>
   <div class="row row-centered">
@@ -63,16 +64,31 @@
   <br/>
   <br/>
   <br/>
+  <form action="/remedio" method="POST">
+  <% if(logina == false) {%>
+  Usted no puede comentar, por favor loguearse
 
-  <p>Comentarios:
+    <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Loguearse"/>
+
+  <% } else if(logina ==  true){ %>
+  <p>Bienvenido <%=nombre_usuario_logueado %>, puede ingresar un comentario:
     <span aria-haspopup="true" class="has-tip" data-tooltip title="Por favor sea respetuoso"></span>
   </p>
-  <form action="/remedio?rem=" method="POST">
     <div class="row row-centered">
+
       <TEXTAREA NAME="comentario" class="postfix inline" cols="100" placeholder="Ingrese su comentario" rows="3"></TEXTAREA>
       <br/><br/>
-      <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Comentar"/>
     </div>
+    <div class="row row-centered">
+      <div class="col-xs-12 col-sm-6">
+        <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Loguearse"/>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Comentar"/>
+      </div>
+    </div>
+
+  <% } %>
   </form>
 
   <br/>
@@ -82,14 +98,25 @@
   <div class="row row-centered">
     <div class="col-xs-12">
 
-
-    <% for(var i=0; i<comentarios.length; i++) {%>
+      <% for(var i=0; i<comentarios.length; i++) {%>
       <br>
-      <div class="row row-centered">
+      <div class="row row-centered boxed">
           <div class="col-xs-12 col-sm-4 img">
-            <a href=<%= idcomentarios[i] %> >Ir al comentario</a>
-            <i><%=nombres_usuariosenc[i]%></i>
-            <img src=<%=fotos[i]%> style="width: 50%; position: relative;">
+            <% if(idusuario==comiduser[i]){%>
+              <div class="row">
+                <a href=<%= idcomentarios[i] %> >Ir al comentario</a>
+                <i><%=nombres_usuariosenc[i]%></i>
+              </div>
+                <% } else { %>
+                <div class="row">
+                <i><%=nombres_usuariosenc[i]%></i>
+              </div>
+              <% } %>
+
+            <div class="row">
+              <img src=<%=fotos[i]%> style="width: 50%; position: relative;">
+            </div>
+
           </div>
           <div class="col-xs-12 col-sm-8">
             <%=comentarios[i] %>

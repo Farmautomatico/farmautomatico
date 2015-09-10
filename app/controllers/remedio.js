@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   router.get('/remedio', function(req, res, next) {
     //console.log(db.regiones);
-    remedioseleccionado = req.session.remedio;
+    remedioseleccionado = remediosel;
     db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
       //var nombreRemedio = resremedio[0].nombre;
 
@@ -21,13 +21,15 @@ module.exports = function(app) {
         var fotos = [],
           nombres_usuariosenc = [],
           comentarios = [],
-          idcomentarios = []
+          idcomentarios = [],
+          comentarios_idusuarios = []
         for (i in rescomentarios) {
           fotos.push(rescomentarios[i].foto_usuario ? "/public/imgsusuarios/" + rescomentarios[i].foto_usuario : "/public/imgsusuarios/caradehuevo.jpg");
           nombres_usuariosenc.push(rescomentarios[i].nombre_usuario ? rescomentarios[i].nombre_usuario : "");
           comentarios.push(rescomentarios[i].comentario ? rescomentarios[i].comentario : "");
           console.log(rescomentarios[i].comentario);
-          idcomentarios.push("comentario/" + remediosel + "/" + rescomentarios[i].idcomentarios)
+          idcomentarios.push("comentario/" + remediosel + "/" + rescomentarios[i].idcomentarios);
+          comentarios_idusuarios.push(rescomentarios[i].idusuario);
         }
         console.log(comentarios);
         console.log(nombres_usuariosenc);
@@ -49,7 +51,12 @@ module.exports = function(app) {
 
 
           }
-
+          if(req.session.name==undefined){
+            login= false;
+          }
+          else{
+            login=true;
+          }
           res.render('remedio', {
 
             title: "Farmautomático",
@@ -60,7 +67,8 @@ module.exports = function(app) {
             conservacion: resremedio[0].conservacion,
             interacciones: resremedio[0].interacciones,
             otros: resremedio[0].otrosdatos,
-            //comentario
+            logina: login,
+            idusuario: req.session.name,
             comentarios: comentarios,
             usuarioingresado: req.session.name,
             fotos: fotos,
@@ -69,7 +77,9 @@ module.exports = function(app) {
             //usuario
             usuarios_nombre: usuarios.nombre,
             usuarios_idusuario: usuarios.idusuario,
-            usuarios_foto: usuarios.foto
+            usuarios_foto: usuarios.foto,
+            comiduser: comentarios_idusuarios,
+            nombre_usuario_logueado: req.session.username
           });
         })
       })
@@ -86,6 +96,18 @@ module.exports = function(app) {
     		  comentario: 'Este es mi comentario',
     		  submit: 'Comentar' }
     */
+    switch (req.body.submit){
+      case 'Loguearse':
+                  res.redirect('/login');
+                  break;
+      case 'Comentar':
+                  db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
+                  console.log(req.body);
+                  pagina = '/remedio';
+                  res.redirect(pagina);
+                  break;
+    }
+    /*
     if (req.session.name==undefined) {
       res.redirect('/login');
     } else {
@@ -93,6 +115,6 @@ module.exports = function(app) {
       console.log(req.body);
       pagina = '/remedio';
       res.redirect(pagina);
-    }
+    }*/
   });
 }

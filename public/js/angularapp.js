@@ -31,7 +31,7 @@ angular.module('app')
             .then(
               function(succ) {
                 console.log(succ);
-                var landingUrl = "http://" + $window.location.host + "/login";
+                var landingUrl = "http://" + $window.location.host + "/remedio";
                 $window.location.href = landingUrl;
               }
             )}

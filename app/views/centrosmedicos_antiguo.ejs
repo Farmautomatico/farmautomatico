@@ -27,19 +27,20 @@
 
 
       </div>
+      </div>
 
 
               <form method="GET" action="centrosmedicos">
-                  <div class="row collapse">
-                    <div class="medium-offset-2 small-10 colums large-centered">
+                  <div class="row row-centered">
+                    <div class="col-xs-12">
                   <div class="small-3 colums">
                 <label class="inline">Seleccione:</label>
                   </div>
-                  <div class="small-4 colums">
+                  <div class="col-xs-4">
                       <input type="radio" name="centrosMedicos" value="Publicos" id="centMPub"><label for="centMPub">Públicos</label>
       <input type="radio" name="centrosMedicos" value="Privados" id="centMPriv"><label for="centMPriv">Privados</label>
                   </div>
-                  <div class="small-2 colums">
+                  <div class="con-xs-2">
                   <input class="button postfix inline" type=submit id="centrosMed-submit" value="Ir" />
                   </div>
                 </div>
@@ -47,7 +48,7 @@
               </form>
 
       <div class="row" id="ListaCentrosMedicos">
-          <div class="medium-offset-2 small-10 colums">
+          <div class="col-xs-10">
                 <ol>
                 <dl>
                   <% for(var i in cmedicos) {%>
@@ -61,7 +62,7 @@
             </ol>
         </div>
         </div>
-    </div>
+
 
 
       <br />
