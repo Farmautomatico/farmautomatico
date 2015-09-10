@@ -10,36 +10,43 @@
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
       <script src="typeahead.bundle.js"></script>
-      <link rel="stylesheet" href="css/estilos_personalizados.css" />
+    <!--  <link rel="stylesheet" href="css/estilos_personalizados.css" />-->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+        <link href="css/roboto.min.css" rel="stylesheet">
+        <link href="css/material.min.css" rel="stylesheet">
+        <link href="css/ripples.min.css" rel="stylesheet">
+        <link href="css/estilos_personalizados.css" rel="stylesheet">
   </head>
   <body>
-    <div class="row">
-        <div class="small-12 large-centered colums">
-            <h1 align="center">Farmautomático</h1>
+
+      <div class="row row-centered">
+        <div class="col-xs-12 col-centered">
+          <img id="logo" src="images/logo.jpg" alt="logo" />
         </div>
-      
-    </div>
+      </div>
+
       <br />
       <br />
-      
-            <div class="row">
-          <div class="medium-offset-2 small-10 colums">
-                <ol>
+
+        <div class="row row-centered">
+			<div class="form">
+                <ul>
                 <dl>
-                <li><dt>¿Cómo busco la enfermedad de mi perro?</dt></li>
+                <li class="a"><dt>¿Cómo busco la enfermedad de mi perro?</dt></li>
                 <dd>Esta página es sólo para humanos</dd>
-                <li><dt>¿De donde sacan la información de los especialistas?</dt></li>
+                <li class="a"><dt>¿De donde sacan la información de los especialistas?</dt></li>
                 <dd>Ellos mismos se inscriben a la página</dd>
-                <li><dt>¿Quienes son los autores de esto?</dt></li>
+                <li class="a"><dt>¿Quienes son los autores de esto?</dt></li>
                     <ol>
-                        <dd><li><dt>María Paz Godoy</dt></li></dd>
-                        <dd><li><dt>Laura Díaz</dt></li></dd>
-                        <dd><li><dt>César Cáceres</dt></li></dd>
-                        <dd><li><dt>Erick Merino</dt></li></dd>
+                        <dd><li class="b">María Paz Godoy</li></dd>
+                        <dd><li class="b">Laura Díaz</li></dd>
+                        <dd><li class="b">César Cáceres</li></dd>
+                        <dd><li class="b">Erick Merino</li></dd>
                     </ol>
                 </dl>
-            </ol>
-        </div>
+				</ul>
+			</div>
         </div>
  </body>
 </html>

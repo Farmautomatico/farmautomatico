@@ -1,6 +1,7 @@
 var express = require('express'),
 	router = express.Router(),
-	remedioseleccionado;
+	remedioseleccionado,
+	idcomentario;
 db = require('../models');
 
 module.exports = function(app) {
@@ -47,21 +48,24 @@ module.exports = function(app) {
 				  comentario: 'Este es mi comentario',
 				  submit: 'Comentar' }
 		*/
+		/*
 		console.log("params:post");
 		console.log(req.query);
 		console.log(req.body);
 		idcomentario=req.query.idcomentario;
-
+		console.log("idcom");
+		console.log(idcomentario);
+*/
 
 		switch (req.body.submit) {
-			case 'Modificar': 	db.remedios_comenta_usuarios.ModificarUnComentario(idcomentario, req.body.comentario);
+			case 'Modificar': 	db.remedios_comenta_usuarios.ModificarUnComentario(idcomentario, req.body.comentario).then(function(err){console.log(err);});
 								break;
 			case 'Eliminar': 	db.remedios_comenta_usuarios.EliminarUnComentario(idcomentario);
 								break;
 		}
 
 
-		remediosel = remedioseleccionado;
+		remediosel = req.session.remedio;
 		console.log(remedioseleccionado);
 		pagina = '/remedio';
 		res.redirect(pagina);

@@ -1,42 +1,64 @@
 <% include header %>
 <!--
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Farmautomático</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <link rel="stylesheet" href="css/estilos_personalizados.css" />
-  </head>
-  <body>
-    <div class="row">
-        <div class="small-12 large-centered colums">
-            <h1 align="center">Farmautomático</h1>
+<html>
+    <meta charset="utf-8">
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/roboto.min.css" rel="stylesheet">
+        <link href="css/material.min.css" rel="stylesheet">
+        <link href="css/ripples.min.css" rel="stylesheet">
+        <link href="css/estilos_personalizados.css" rel="stylesheet">
+    </head>
+
+    <body>
+      <br>
+      <br>
+      <div class="row row-centered">
+        <div class="col-xs-12 col-centered">
+          <img id="logo" src="images/logo.jpg" alt="logo" />
         </div>
-
-    </div>-->
-      <br />
-      <br />
-    <div class="row">
-      <div class="large-12">
-        <form action="login" method="post">
-          <input type="text" name="nombre" value="nombre" placeholder="minombre">
-          <input type="password" name="contrasena" value="contrasena" placeholder="hola">
-          <input type="submit" name="submitlogin" value="submit">
-        </form>
-
       </div>
-    </div>
+    -->
+      <br>
+      <br>
+      <form action="login" method="post">
+      <div class="container">
+        <div class="col-xs-0 col-sm-0 col-md-4 col-centered"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
+			  <div class="row">
+				<div class="col-xs-12 col-sm-12">
+				  <label for="right-label" class="control-label">Nombre de Usuario:</label>
+				  <input class="form-control" name="nombreusuario" type="text" id="usuario">
 
 
-    <div class="row">
-      <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
-        <a href="PreguntasFrecuentes" class="button">Preguntas Frecuentes</a>
+				</div>
+				<div class="col-xs-12 col-sm-12">
+				  <label  for="right-label" class="control-label">Contraseña:</label>
+				  <input class="form-control" name="password"  type="password" id="password">
+				</div>
+				<div class="col-xs-12 col-sm-12">
+				  <input class="btn btn-primary pull-right" name="submit" type="submit" id="especialista-submit" value="Ingresar"><i class="fa fa-lock"></i></input>
+
+				</div>
+			  </div>
+        </div>
+        <div class="col-xs-0 col-sm-0 col-md-4 col-centered"></div>
       </div>
+    </form>
+<% include PreguntasFrecuentes %>
 
- </body>
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/ripples.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <script>
+        $(document).ready(function() {
+          $.material.init();
+        }
+        </script>
+
+    </body>
+
 </html>

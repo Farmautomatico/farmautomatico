@@ -50,7 +50,7 @@ module.exports = function (app) {
         console.log("body del index");
         console.log(req.body);
         //remediosel = req.body.remedios;
-        remediosel = req.body.remedioselec;
+        remediosel = req.body.remedios;
         ciudad = req.body.seleccionCiudad;
         //res.send("hola");
         switch (req.body.submit) {

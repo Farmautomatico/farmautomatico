@@ -27,7 +27,7 @@ router.get('/login', function(req, res, next) {
 
 
 router.post('/login', function (req, res, next) {
-		req.session.name = req.body.nombre;
+		req.session.name = req.body.nombreusuario;
 
 		/*console.log(req.body);
 		console.log(req.query);

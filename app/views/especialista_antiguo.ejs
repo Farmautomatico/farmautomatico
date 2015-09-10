@@ -1,4 +1,4 @@
-<% include header %>
+<% include header_antiguo %>
 <!--
 <!doctype html>
 <html class="no-js" lang="en">
@@ -11,56 +11,59 @@
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <link rel="stylesheet" href="css/estilos_personalizados.css" />
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
-        <link href="css/roboto.min.css" rel="stylesheet">
-        <link href="css/material.min.css" rel="stylesheet">
-        <link href="css/ripples.min.css" rel="stylesheet">
-        <link href="css/estilos_personalizados.css" rel="stylesheet">
   </head>
   <body>
     <div class="row">
         <div class="small-12 large-centered colums">
-            <img id="logo" src="images/logo.jpg" alt="logo" />
+            <h1 align="center">Farmautomático</h1>
         </div>
 
-    </div>
+    </div>-->
       <br />
       <br />
--->
-      <div class="row" id="ListaEspecialistas">
-          <div class="form">
-			<ul class="a">
-				<p>Especialista: <span id="Especialidad">
-				<select id="seleccionar-ciudad">
-				  <option value="Seleccione">Todos</option>
-				  <option value="odontologo">Odontólogo</option>
-				  <option value="kinesiologo">Kinesiólogo</option>
-				  <option value="cirujano">Cirujano</option>
-				</select></span></p>
+    <div class="row">
+      <div class="medium-offset-2 small-8 colums">
+        <p>Especialista: <span id="Especialidad">
+            <select id="seleccionar-ciudad">
+          <option value="Seleccione">Todos</option>
+          <option value="odontologo">Odontólogo</option>
+          <option value="kinesiologo">Kinesiólogo</option>
+          <option value="cirujano">Cirujano</option>
+        </select></span></p>
 
+
+      </div>
+
+
+              <form onSubmit="return especialistasPorCiudad();">
+                  <div class="row">
+                    <div class="medium-offset-2 small-10 colums large-centered">
+                </div>
+                </div>
+              </form>
+
+      <div class="row" id="ListaEspecialistas">
+          <div class="medium-offset-2 small-10 colums">
+                <ol>
                 <dl>
                 <li><dt>Javier Quintana</dt></li>
                 <dd>Odontólogo</dd>
                 <dd>Teléfono: 12345678</dd>
                 <dd>Dirección: La casa del lado 9999</dd>
-				<br/>
                 <li><dt>Rodrigo Peñaloza</dt></li>
                 <dd>Kinesiólogo</dd>
                 <dd>Teléfono: 87654321</dd>
                 <dd>Dirección: A la vuelta de la esquina 6666</dd>
-                <br/>
                 <li><dt>José de la fuente</dt></li>
                 <dd>Odontólogo</dd>
                 <dd>Teléfono: 1829394</dd>
                 <dd>Dirección: Calle falsa #1234</dd>
-                <br/>
                 <li><dt>Pedrito por su casa</dt></li>
                 <dd>Cirujano</dd>
                 <dd>Teléfono: 666999666</dd>
                 <dd>Dirección: Otra dirección 4321</dd>
                 </dl>
-            </ul>
+            </ol>
         </div>
         </div>
     </div>
@@ -68,12 +71,13 @@
       <br />
       <br />
 
-    <% include PreguntasFrecuentes %>
+    <div class="row">
+      <div class="large-offset-8 large-4 medium-offset-6 medium-6 small-12 columns">
+        <a href="PreguntasFrecuentes.html" class="button">Preguntas Frecuentes</a>
+      </div>
 
     <script>
-    $(document).ready(function() {
-      $.material.init();
-    }
+      $(document).foundation();
     </script>
   </body>
 </html>

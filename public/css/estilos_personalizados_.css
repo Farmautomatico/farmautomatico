@@ -1,9 +1,9 @@
-h1 {
-  font-size: 5em;
+
+html {
+  font-size: 1.5em;
 }
 .row-centered {
   text-align:center;
-      width: 600px;
     margin: 0 auto;
 }
 .col-centered {
@@ -21,14 +21,14 @@ h1 {
   display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 23em;
+    width: 20%;
 }
 
 
 .form{
 	padding-left: 20px;
 	text-align: justify;
-	width: 400px;
+	width: 70%;
 	margin: 0px auto;
 }
 
@@ -38,3 +38,9 @@ h1 {
 ol, ul .a {list-style-type: circle;}
 
 ol, ul .b {list-style-type: none;}
+
+#fotousuario {
+  display:inline-block;
+  position: relative;
+  float: right;
+}

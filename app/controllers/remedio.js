@@ -17,7 +17,7 @@ router.get('/remedio', function(req, res, next) {
 
 
 
-			console.log(rescomentarios);
+			console.log(req.body);
 			var fotos = [],
 				nombres_usuariosenc = [],
 				comentarios = [],
@@ -97,7 +97,7 @@ router.post('/remedio', function (req, res, next) {
 		  submit: 'Comentar' }
 */
 		db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.body.seleccionUsuarioComentario, req.body.comentario);
-
+		console.log(req.body);
 		pagina = '/remedio';
         res.redirect(pagina);
 	});
