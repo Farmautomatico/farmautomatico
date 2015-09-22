@@ -1,8 +1,4 @@
-instrucciones para ejecutarlo.
-
-Debido a que es virtualmente imposible subir los 9000 prácticamente de archivos que hay en el directorio node_modules
-(lo intenté, pero el programa se pegó y dió muchísimos errores), y como ya había un .gitignore que los ignoraba, 
-los pasos para ejecutarlo son los siguientes:
+﻿instrucciones para ejecutarlo.
 
 Instalar nodejs desde la página.
 
@@ -10,26 +6,43 @@ entrar a la carpeta con cd <carpeta>
 
 instalas las dependencias con:
 npm install
+npm install -g gulp
 npm install cookie-session
 (cookie session no se instala sola -.-)
 
-para ejecutar, correr en la consola:
-gulp
-
-Luego copiar los archivos de este git y reemplazarlos por los otros.
 
 Para la base de datos:
+
+Instalar MySQL5.6
+Agregar al directorio PATH la carpeta:
+C:\Program Files\MySQL\MySQL Server 5.6\bin
+
+Para ello, ir a:
+Panel de control>Sistema y seguridad>Sistema>Configuración avanzada del sistema>Variables de entorno
+Editar o crear en su defecto la variable PATH, y pegar:
+;C:\Program Files\MySQL\MySQL Server 5.6\bin
+(los directorios van separados por punto y coma)
+
 Se llama farmautomatico.
 está en el archivo farmautomatico.sql, hay que importarla a "farmautomatico".
-Para que funcione, el usuario es root y no tiene contraseña (que flojera).
+Para que funcione, el usuario es farmautomatico y la contraseña es farmautomatico (la misma).
+
 Para importarla es entrando a mysql:
-mysql -u root
+mysql -u root -p
+
 luego crear la base de datos:
 create database farmautomatico
-entrar:
-use farmautomatico
-y llenarla con los datos:
-source C:\Usuarios\Erick\farmautomatico1\farmautomatico.sql
-(o la dirección donde esté, se arrastra a la terminal).
 
-Con todo eso debería funcionar.
+crear el usuario y darle privilegios:
+create user 'farmautomatico'@'localhost' identified by 'farmautomatico';
+grant all previleges on farmautomatico.* to 'farmautomatico'@'localhost';
+flush previleges;
+
+importarla:
+cd <carpeta del respaldo>
+mysql -u root -p farmautomatico < farmautomatico-archivo-respaldo.sql
+
+reemplazar farmautomatico-archivo-respaldo.sql con el nombre respectivo
+
+para ejecutar, correr en la consola:
+gulp

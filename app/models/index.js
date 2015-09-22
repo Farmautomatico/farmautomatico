@@ -4,8 +4,8 @@ var fs = require('fs'),
   config = require('../../config/config'),
   db = {};
 
-
-var sequelize = new Sequelize('farmautomatico', 'root', '', {
+//db, user, pw
+var sequelize = new Sequelize('farmautomatico', 'farmautomatico', 'farmautomatico', {
   host: 'localhost',
   dialect: 'mysql',
   autoIncrement: true,
