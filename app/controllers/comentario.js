@@ -15,7 +15,7 @@ module.exports = function(app) {
 		idcomentario = req.params.idcomentario;
 
 		remedioseleccionado = req.params.nombreRemedio;
-		db.remedios_comenta_usuarios.encontrarUnComentario(req.params.nombreRemedio, idcomentario).then(function(rescomentarios) {
+		db.usuarios_comenta_remedio.encontrarUnComentario(req.params.nombreRemedio, idcomentario).then(function(rescomentarios) {
 
 			console.log(rescomentarios);
 			foto_usuario = rescomentarios[0].foto_usuario ? "/public/imgsusuarios/" + rescomentarios[0].foto_usuario : "/public/imgsusuarios/caradehuevo.jpg"
@@ -58,9 +58,9 @@ module.exports = function(app) {
 */
 
 		switch (req.body.submit) {
-			case 'Modificar': 	db.remedios_comenta_usuarios.ModificarUnComentario(idcomentario, req.body.comentario).then(function(err){console.log(err);});
+			case 'Modificar': 	db.usuarios_comenta_remedio.ModificarUnComentario(idcomentario, req.body.comentario).then(function(err){console.log(err);});
 								break;
-			case 'Eliminar': 	db.remedios_comenta_usuarios.EliminarUnComentario(idcomentario);
+			case 'Eliminar': 	db.usuarios_comenta_remedio.EliminarUnComentario(idcomentario);
 								break;
 		}
 

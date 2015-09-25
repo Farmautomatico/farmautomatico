@@ -13,7 +13,7 @@ module.exports = function(app) {
     db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
       //var nombreRemedio = resremedio[0].nombre;
 
-      db.remedios_comenta_usuarios.encontrarComentarios(remedioseleccionado).then(function(rescomentarios) {
+      db.usuarios_comenta_remedio.encontrarComentarios(remedioseleccionado).then(function(rescomentarios) {
 
 
 
@@ -101,7 +101,7 @@ module.exports = function(app) {
                   res.redirect('/login');
                   break;
       case 'Comentar':
-                  db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
+                  db.usuarios_comenta_remedio.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
                   console.log(req.body);
                   pagina = '/remedio';
                   res.redirect(pagina);
@@ -111,7 +111,7 @@ module.exports = function(app) {
     if (req.session.name==undefined) {
       res.redirect('/login');
     } else {
-      db.remedios_comenta_usuarios.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
+      db.usuarios_comenta_remedio.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
       console.log(req.body);
       pagina = '/remedio';
       res.redirect(pagina);
