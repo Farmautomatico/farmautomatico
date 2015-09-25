@@ -1,5 +1,8 @@
 ﻿instrucciones para ejecutarlo.
 
+
+Hola soy laura
+
 Instalar nodejs desde la página.
 
 entrar a la carpeta con cd <carpeta>
