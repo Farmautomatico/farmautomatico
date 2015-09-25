@@ -17,9 +17,9 @@ angular.module('app')
         $scope.enviarRemedio = function() {
           console.log($scope.remediosel);
           $http({
-              method: 'POST',
-              url: '/',
-              data: {
+              method: 'GET',
+              url: '/remedio',
+              params: {
                 remedioselec: $scope.remediosel,
                 submit: "Al remedio",
                 seleccionCiudad: $scope.ciudad
@@ -31,8 +31,8 @@ angular.module('app')
             .then(
               function(succ) {
                 console.log(succ);
-                var landingUrl = "http://" + $window.location.host + "/remedio";
-                $window.location.href = landingUrl;
+                //var landingUrl = "http://" + $window.location.host + "/remedio";
+                //$window.location.href = landingUrl;
               }
             )}
         }

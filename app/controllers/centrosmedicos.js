@@ -24,7 +24,7 @@ module.exports = function(app) {
         var indexCiudad = ciudad;
         //console.log(indexCiudad);
         //console.log(req);
-        
+
         console.log(req.query.centrosMedicos);
         if (req.query.centrosMedicos != undefined) {
             switch (req.query.centrosMedicos) {
@@ -49,7 +49,7 @@ module.exports = function(app) {
 
         }
 
-
+//resultado de la seleccion
         function callbackmain(resul) {
             var data = [],
                 telef = [];

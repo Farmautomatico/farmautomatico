@@ -32,7 +32,7 @@
         <h2>Farmacias</h2>
 
 
-              <form onSubmit="return getListafarmacias();">
+              <form action="/farmaciacontroller" method="GET">
                 <label class="inline">Seleccione:</label><br/><br/>
                 <input type="radio" name="farmacias" value="todas" id="todas"><label for="todas">Todas</label><span data-tooltip aria-haspopup="true" class="has-tip" title="Todas, incluyendo las de turno"></span></input><br/><br/>
                 <input type="radio" name="farmacias" value="deTurno" id="deTurno"><label for="deTurno">De turno</label> <span data-tooltip aria-haspopup="true" class="has-tip" title="Sólo las de turno, que atienden las 24 horas"></span></input><br/><br/>
@@ -46,6 +46,22 @@
 
 				<input class="button postfix inline" type=submit id="farmacias-submit" value="Ir" />
         <div class="row row-centered" id="ListaFarmacias">
+          <div class="medium-offset-2 small-10 colums">' +
+            <% for
+                  '<ol>' +
+                  '<dl>' +
+                  '<li><dt>Nombre <%=farmacias-data[0].nombre</dt></li>' +
+                  '<dd>Dirección: Calle falsa 1234</dd>' +
+                  '<dd>Teléfono: 12345678</dd>' +
+                  '<li><dt>Salco Brand</dt></li>' +
+                  '<dd>Dirección: La esquina del otro lado</dd>' +
+                  '<dd>Teléfono: 87654321</dd>' +
+                  '<li><dt>Cruz Verde</dt></li>' +
+                  '<dd>Dirección: Rodelillo 4444</dd>' +
+                  '<dd>Teléfono: 1829394</dd>' +
+                  '</dl>' +
+              '</ol>
+          '</div>';
 
           </div>
               </form>

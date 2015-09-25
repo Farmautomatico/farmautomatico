@@ -1,17 +1,26 @@
 ﻿instrucciones para ejecutarlo.
-
-
-Hola soy laura
-
+------------------------------------------------------
 Instalar nodejs desde la página.
-
-entrar a la carpeta con cd <carpeta>
+------------------------------------------------------
+Para las dependencias de la aplicación
+Instalar como administrador, en la carpeta, para ello:
+Click derecho en el escritorio
+click en nuevo y luego acceso directo
+en ruta escribir "cmd.exe"
+en nombre, lo que sea.
+Click derecho en el acceso directo y luego click en ejecutar como administrador
+luego, el comando:
+cd <carpeta de farmautomatico>
 
 instalas las dependencias con:
 npm install
 npm install -g gulp
 npm install cookie-session
-(cookie session no se instala sola -.-)
+(cookie session no se instala sola, falta agregarla a packages.js)
+
+
+------------------------------------------------------
+
 
 
 Para la base de datos:
@@ -25,8 +34,8 @@ Panel de control>Sistema y seguridad>Sistema>Configuración avanzada del sistema
 Editar o crear en su defecto la variable PATH, y pegar:
 ;C:\Program Files\MySQL\MySQL Server 5.6\bin
 (los directorios van separados por punto y coma)
-
-Se llama farmautomatico.
+----------
+La base de datos se llama farmautomatico.
 está en el archivo farmautomatico.sql, hay que importarla a "farmautomatico".
 Para que funcione, el usuario es farmautomatico y la contraseña es farmautomatico (la misma).
 
@@ -38,14 +47,19 @@ create database farmautomatico
 
 crear el usuario y darle privilegios:
 create user 'farmautomatico'@'localhost' identified by 'farmautomatico';
+create database farmautomatico;
 grant all previleges on farmautomatico.* to 'farmautomatico'@'localhost';
 flush previleges;
+exit;
 
 importarla:
 cd <carpeta del respaldo>
-mysql -u root -p farmautomatico < farmautomatico-archivo-respaldo.sql
+mysql -u farmautomatico -p farmautomatico < farmautomaticov2.sql
 
-reemplazar farmautomatico-archivo-respaldo.sql con el nombre respectivo
-
+------------------------------------------------------
 para ejecutar, correr en la consola:
 gulp
+
+
+Si falla sequelize (letras rojas, muchas, que dice sobre que no puede acceder a farmautomatico o mysql), 
+entonces reiniciar el pc y volver a intentar xD sequelize es una lata

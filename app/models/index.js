@@ -5,7 +5,7 @@ var fs = require('fs'),
   db = {};
 
 //db, user, pw
-var sequelize = new Sequelize('farmautomatico', 'farmautomatico', 'farmautomatico', {
+var sequelize = new Sequelize('farmautomaticov2', 'farmautomatico', 'farmautomatico', {
   host: 'localhost',
   dialect: 'mysql',
   autoIncrement: true,
