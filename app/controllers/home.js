@@ -52,6 +52,8 @@ module.exports = function (app) {
         //remediosel = req.body.remedios;
         remediosel = req.body.remedios;
         ciudad = req.body.seleccionCiudad;
+        edad = req.body.edad;
+        enfermedad = req.body.enfermedad;
         //res.send("hola");
         switch (req.body.submit) {
             case "Al Especialista":

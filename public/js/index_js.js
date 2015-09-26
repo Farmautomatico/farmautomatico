@@ -14,7 +14,7 @@ function inicializarEdades() {
   var edad = document.getElementById("seleccionar-edad");
   var i = 0
   for(i = 0; i<=100; i++) {
-      edad.innerHTML = edad.innerHTML + '<option value="edad' + i + '">'+ i + '</option> ';
+      edad.innerHTML = edad.innerHTML + '<option ng-model="edad" value='+i+'>'+ i + '</option> ';
 
   }
   edad.innerHTML = edad.innerHTML + '<option value="edadmas100">101+</option> ';
