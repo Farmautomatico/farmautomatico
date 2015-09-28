@@ -21,15 +21,16 @@ module.exports = function(app) {
 
     var telefono;
     router.get('/centrosmedicos', function(req, res, next) {
-      indexCiudad = ciudad;
             res.render('centrosmedicos', {
 
                 title: "Farmautomático",
-                cmedicos: []
+                cmedicos: [],
+                ciudad: req.query.ciudad
 
             });
     });
     router.get('/centrosmedicosformulario', function(req, res, next) {
+      indexCiudad = req.query.ciudad;
           switch (req.query.centrosMedicos) {
               case 'Privados':
                   db.centrosmedicos.encontrarPrivados(indexCiudad).then(callbackcmform);
@@ -84,7 +85,8 @@ module.exports = function(app) {
           res.render('centrosmedicos', {
 
               title: "Farmautomático",
-              cmedicos: data
+              cmedicos: data,
+              ciudad: req.query.ciudad
 
           });
       }

@@ -9,7 +9,12 @@ module.exports = function(app) {
 
   router.get('/remedio', function(req, res, next) {
     //console.log(db.regiones);
-    remedioseleccionado = remediosel;
+    if(req.session.remedio){
+      remedioseleccionado = req.session.remedio;
+    }else {
+      remedioseleccionado = req.query.remedios;
+    };
+    console.log(req.query);
     db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
       //var nombreRemedio = resremedio[0].nombre;
 
@@ -28,7 +33,7 @@ module.exports = function(app) {
           nombres_usuariosenc.push(rescomentarios[i].nombre_usuario ? rescomentarios[i].nombre_usuario : "");
           comentarios.push(rescomentarios[i].comentario ? rescomentarios[i].comentario : "");
           console.log(rescomentarios[i].comentario);
-          idcomentarios.push("comentario/" + remediosel + "/" + rescomentarios[i].idcomentarios);
+          idcomentarios.push("comentario/" + remedioseleccionado + "/" + rescomentarios[i].idcomentarios);
           comentarios_idusuarios.push(rescomentarios[i].idusuario);
         }
         console.log(comentarios);
@@ -62,6 +67,7 @@ module.exports = function(app) {
             title: "Farmautomático",
             //remedio
             nombre: resremedio[0].nombre,
+            nombre2: resremedio[0].nombre,
             indicaciones: resremedio[0].indicaciones,
             contraindicaciones: resremedio[0].contraindicaciones,
             conservacion: resremedio[0].conservacion,
@@ -96,6 +102,10 @@ module.exports = function(app) {
     		  comentario: 'Este es mi comentario',
     		  submit: 'Comentar' }
     */
+    console.log("post remedio");
+    console.log(req.query);
+    console.log(req.body);
+    remediosel = req.body.remedio;
     switch (req.body.submit){
       case 'Loguearse':
                   res.redirect('/login');

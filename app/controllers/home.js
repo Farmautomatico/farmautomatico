@@ -39,7 +39,7 @@ module.exports = function (app) {
         });
 
     });
-
+/*
     router.post('/', function (req, res, next) {
 
         //req.session.name = req.body.name;
@@ -89,5 +89,5 @@ module.exports = function (app) {
 
 
 	//}
-    })
+})*/
 };
