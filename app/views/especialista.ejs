@@ -11,55 +11,69 @@
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <link rel="stylesheet" href="css/estilos_personalizados.css" />
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
-<form class="" action="especialistaformulario" method="GET">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+  </head>
+  <body>
+	<div class="row">
+        <div class="small-12 large-centered colums">
+            <h1 align="center"><%-title %></h1>
+        </div>
+	</div>
+	<br/>
+	<br/>
+	
+	<form class="" action="especialistaformulario" method="GET">
 
-
+		<input name="enfermedad" value<%=enfermedad%> type="hidden">
+		<input name="ciudad" value<%=ciudad%> type="hidden">
+		<input name="edad" value<%=edad%> type="hidden">
+		
       <div class="row" id="ListaEspecialistas">
-          <div class="form">
+        <div class="col-xs-12 col-centered">
+			<h3>Especialistas</h3>
+		</div>
+		<div class="form">
 			<ul class="a">
-				<p>Especialista: <span id="Especialidad">
-				<select id="seleccionar-ciudad">
+				<p>Especialista:
+				<span id="Especialidad">
+				<select id="especialidad">
 				  <option value="Seleccione">Todos</option>
 				  <option value="odontologo">Odontólogo</option>
 				  <option value="kinesiologo">Kinesiólogo</option>
 				  <option value="cirujano">Cirujano</option>
-				</select></span></p>
-        <input class="btn btn-primary " type="submit" name="submit" value="Ir">
-        </form>
+				</select>
+				</span>
+				</p>
+			<input class="btn btn-primary " type="submit" name="submit" value="Ir">
+        </div>
+      </div>
+    </form>
+		
 
-                <dl>
-                <li><dt>Javier Quintana</dt></li>
-                <dd>Odontólogo</dd>
-                <dd>Teléfono: 12345678</dd>
-                <dd>Dirección: La casa del lado 9999</dd>
-				<br/>
-                <li><dt>Rodrigo Peñaloza</dt></li>
-                <dd>Kinesiólogo</dd>
-                <dd>Teléfono: 87654321</dd>
-                <dd>Dirección: A la vuelta de la esquina 6666</dd>
-                <br/>
-                <li><dt>José de la fuente</dt></li>
-                <dd>Odontólogo</dd>
-                <dd>Teléfono: 1829394</dd>
-                <dd>Dirección: Calle falsa #1234</dd>
-                <br/>
-                <li><dt>Pedrito por su casa</dt></li>
-                <dd>Cirujano</dd>
-                <dd>Teléfono: 666999666</dd>
-                <dd>Dirección: Otra dirección 4321</dd>
+		<div class="row row-centered" id="ListaEspecialistas">
+          <div class="form">
+			<ul class="a">
+				<dl>
+          <% for(var i in especialistas) {%>
+                <li><dt>Nombre: <%-especialistas[i][0]%></dt></li>
+					<dd>Especialidad: <%-especialistas[i][1]%></dd>
+					<dd>E-mail: <%-especialistas[i][2]%></dd>
+					<dd>Dirección: <%-especialistas[i][3]%></dd>
+					<% for(var tel in especialistas[i][4]) {%>
+					  <dd>Teléfono n° <%-tel %>: <%-especialistas[i][4][tel] %> </dd>
+					<% } %>
+					<br/>
+          <% } %>
                 </dl>
             </ul>
+          </div>
         </div>
-        </div>
-    </div>
-
+    
       <br />
       <br />
 
-    <% include PreguntasFrecuentes %>
-
+	<% include PreguntasFrecuentes %>
     <script>
     $(document).ready(function() {
       $.material.init();
