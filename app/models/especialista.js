@@ -1,16 +1,16 @@
-
 module.exports = function (sequelize, DataTypes) {
 
   var especialista = sequelize.define('especialista', {
 	
 	id_especialista: DataTypes.INTEGER,
 	nombre_especialista: DataTypes.STRING,
-	fotoData: Types.STRING,
-	email: DataTypes.STRING,
 	especialidad: DataTypes.STRING,
+	email: DataTypes.STRING,
 	direccion: DataTypes.STRING,
-	comunas_idcomunas: DataTypes.INTEGER
 	telefono: DataTypes.INTEGER
+	contraseña: DataTypes.STRING,
+	fotoData: Types.STRING,
+	comunas_idcomunas: DataTypes.INTEGER
 	
   }, {
   
@@ -40,8 +40,6 @@ module.exports = function (sequelize, DataTypes) {
 	return especialista
 
 };
-
-
 
 /*module.exports = function (sequelize, DataTypes) {
 
