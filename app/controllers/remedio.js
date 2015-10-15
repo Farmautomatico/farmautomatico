@@ -9,10 +9,12 @@ module.exports = function(app) {
 
   router.get('/remedio', function(req, res, next) {
     //console.log(db.regiones);
-    if(req.session.remedio){
-      remedioseleccionado = req.session.remedio;
-    }else {
+    console.log(req.session.name);
+    if(req.query.remedios){
       remedioseleccionado = req.query.remedios;
+      req.session.remedio = req.query.remedios;
+    }else if(req.session.remedio){
+      remedioseleccionado = req.session.remedio;
     };
     console.log(req.query);
     db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
@@ -52,7 +54,9 @@ module.exports = function(app) {
             usuarios.idusuario.push(resusuarios[i].idusuario);
             usuarios.nombre.push(resusuarios[i].nombre);
             usuarios.foto.push(resusuarios[i].foto);
-
+            if(req.session.name==resusuarios[i].nombre){
+              req.session.id=resusuarios[i].idusuario;
+            }
 
 
           }
@@ -74,9 +78,9 @@ module.exports = function(app) {
             interacciones: resremedio[0].interacciones,
             otros: resremedio[0].otrosdatos,
             logina: login,
-            idusuario: req.session.name,
+            idusuario: req.session.id,
             comentarios: comentarios,
-            usuarioingresado: req.session.name,
+            usuarioingresado: req.session.id,
             fotos: fotos,
             nombres_usuariosenc: nombres_usuariosenc,
             idcomentarios: idcomentarios,
@@ -85,7 +89,7 @@ module.exports = function(app) {
             usuarios_idusuario: usuarios.idusuario,
             usuarios_foto: usuarios.foto,
             comiduser: comentarios_idusuarios,
-            nombre_usuario_logueado: req.session.username
+            nombre_usuario_logueado: req.session.name
           });
         })
       })
@@ -106,15 +110,24 @@ module.exports = function(app) {
     console.log(req.query);
     console.log(req.body);
     remediosel = req.body.remedio;
+    console.log(req.session.name);
     switch (req.body.submit){
       case 'Loguearse':
                   res.redirect('/login');
                   break;
       case 'Comentar':
-                  db.usuarios_comenta_remedio.ingresarUnComentario(remedioseleccionado, req.session.name, req.body.comentario);
+                  db.usuarios_comenta_remedio.ingresarUnComentario(remedioseleccionado, req.session.id, req.body.comentario);
                   console.log(req.body);
                   pagina = '/remedio';
                   res.redirect(pagina);
+                  break;
+      case 'Registrarse':
+                	res.redirect("/signup");
+                	break;
+      case 'Salir':
+                	req.session.id=undefined;
+                  req.session.name=undefined;
+                  res.redirect("/remedio");
                   break;
     }
     /*

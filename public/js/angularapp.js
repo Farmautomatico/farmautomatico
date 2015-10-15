@@ -2,7 +2,9 @@ var app = angular.module("app", ['ngAnimate', 'mgcrea.ngStrap']);
 
 angular.module('app')
   .controller('indexController', ['$scope', '$templateCache', '$http', '$location', '$window', function($scope, $templateCache, $http, $location, $window) {
-      $scope.remedios = ['falló'];
+      $scope.remedios = [''];
+      $scope.enfermedades=[''];
+      $scope.enfermedadseleccionada='';
       $scope.ciudad="Seleccione";
       $scope.centroofarm='';
       $scope.remediosel = '';
@@ -23,13 +25,19 @@ angular.module('app')
     });
 
 
-      $http.get('/jsonRemedios').then(fungetexito, funerror);
+      $http.get('/jsonRemedios').then(fungetremediosexito, fungetremedioserror);
 
-      function fungetexito(data) {
+      function fungetremediosexito(data) {
         console.log(data.data);
         $scope.remedios = JSON.parse(data.data);
 }
-function funerror(err) {
+function fungetremedioserror(err) {
   console.log(err)
 }
+$http.get('/jsonEnfermedades').then(function(data){
+  console.log(data.data);
+  $scope.enfermedades = JSON.parse(data.data);
+}, function(err){
+  console.log(err);
+})
   }])

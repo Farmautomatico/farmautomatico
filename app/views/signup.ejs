@@ -1,0 +1,45 @@
+<% include header %>
+
+
+<%if(error == true) {%>
+  <script type="text/javascript">
+    alert("Error en alguno de los campos");
+  </script>
+  <%}%>
+<form method="post" enctype="multipart/form-data" action="/signup">
+  <div class="row row-centered">
+
+
+  <div class="col-xs-12 col-sm-10 col-md-8 col-centered">
+  <div class="col-xs-12 col-sm-12 col-centered">
+    <label for="right-label" class="control-label">Nombre de Usuario:</label>
+    <input class="form-control" name="nombreusuario" type="text" id="usuario" required>
+
+
+  </div>
+  <div class="col-xs-12 col-sm-12 col-centered">
+    <label  for="right-label" class="control-label">Contraseña:</label>
+    <input class="form-control" name="password"  type="password" id="password" required>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-centered">
+    <label  for="right-label" class="control-label">Repita la contraseña:</label>
+    <input class="form-control" name="password2"  type="password" id="password2" required>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-centered">
+    <label  for="right-label" class="control-label">Escriba su email:</label>
+    <input class="form-control" name="email"  type="email" id="email" required>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-centered">
+    <input class="form-control" type="file" name="foto_usuario" required>
+    <input class="form-control" type="submit" value="Submit">
+  </div>
+</div>
+  </div>
+</form>
+
+<script>
+  //$(document).foundation();
+  $.material.init();
+</script>
+
+<% include PreguntasFrecuentes %>

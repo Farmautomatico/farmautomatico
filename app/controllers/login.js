@@ -30,12 +30,14 @@ router.post('/login', function (req, res, next) {
 console.log("body del post login");
 remedios = req.body.remedio;
 console.log(req.body);
+switch (req.body.submit) {
+case 'Ingresar':
 		db.usuarios.encontrarUsuarios().then(function(users) {
 			for(i in users) {
 				if(req.body.nombreusuario==users[i].nombre && req.body.password==users[i].contrasena){
 					console.log(users[i].nombre);
-					req.session.name = users[i].idusuario;
-					req.session.username = req.body.nombreusuario;
+					req.session.id = users[i].idusuario;
+					req.session.name = req.body.nombreusuario;
 					//req.session.remedio = remediosel;
 					req.session.remedio = remedios;
 					res.redirect('/remedio');
@@ -45,6 +47,16 @@ console.log(req.body);
 			req.session.remedio = remedios;
 			res.redirect('/remedio');
 		});
+		break;
+case 'Registrarse':
+	res.redirect("/signup");
+	break;
+case 'Salir':
+	req.session.id=undefined;
+	req.session.name=undefined;
+	res.redirect("/remedio");
+	break;
+}
 
 		/*console.log(req.body);
 		console.log(req.query);
