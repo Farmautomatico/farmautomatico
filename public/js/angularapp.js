@@ -2,74 +2,58 @@ var app = angular.module("app", ['ngAnimate', 'mgcrea.ngStrap']);
 
 angular.module('app')
   .controller('indexController', ['$scope', '$templateCache', '$http', '$location', '$window', function($scope, $templateCache, $http, $location, $window) {
-      $scope.remedios = ['hola'];
-      $scope.remediosel = '';
-      $http.get('/jsonRemedios').then(fungetexito, funerror);
+    $scope.remedios = [''];
+    $scope.enfermedades = [''];
+    $scope.enfermedadseleccionada = '';
+    $scope.ciudad = $scope.ciudadactual;
+    $scope.centroofarm = '';
+    $scope.remediosel = '';
+    $scope.combodep = [];
+    $scope.accion_centroofarm = '';
+    console.log($scope.centroofarm);
+    console.log($scope.ciudad);
+    $scope.$watch('ciudad', function(newvalue, oldValue) {
+      console.log(newvalue);
+    });
+    $scope.$watch('ciudadactual', function(newvalue, oldValue) {
+      $scope.ciudad = $scope.ciudadactual.Id;
+      console.log(newvalue);
+    });
 
-      function fungetexito(data) {
-        console.log(data.data);
-        $scope.remedios = JSON.parse(data.data);
+    $scope.$watch('centroofarm', function(newvalue, oldValue) {
+      if (newvalue == 'farmacia') {
+        $scope.accion_centroofarm = 'farmacia';
+      } else if (newvalue == 'centromedico') {
+        $scope.accion_centroofarm = '/centrosmedicos';
+      }
+    });
 
-        console.log($scope.remedios);
 
+    $http.get('/jsonRemedios').then(fungetremediosexito, fungetremedioserror);
 
-        //$scope.remedios = ['Omeprazol', 'Loratadina'];
-        $scope.enviarRemedio = function() {
-          console.log($scope.remediosel);
-          $http({
-              method: 'POST',
-              url: '/',
-              data: {
-                remedioselec: $scope.remediosel,
-                submit: "Al remedio",
-                seleccionCiudad: $scope.ciudad
-              },
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-            .then(
-              function(succ) {
-                console.log(succ);
-                var landingUrl = "http://" + $window.location.host + "/remedio";
-                $window.location.href = landingUrl;
-              }
-            )}
-        }
-
-        function funerror(err) {
-          console.log(err)
-        }
-
-    $scope.controllerCMOFarm = function() {
-      $http({
-          method: 'POST',
-          url: '/',
-          data: {
-            centroofarm: $scope.centroofarm,
-            submit: "A mi Centro Medico o Farmacia"
-          },
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(
-          function(succ) {
-            console.log(succ);
-            if ($scope.centroofarm == 'farmacia') {
-              var landingUrl = "http://" + $window.location.host + "/farmacia";
-            } else if ($scope.centroofarm == 'centromedico') {
-              var landingUrl = "http://" + $window.location.host + "/centrosmedicos";
-            }
-            $window.location.href = landingUrl;
-          },
-          function(err) {
-            console.log(err)
-          })
+    function fungetremediosexito(data) {
+      console.log(data.data);
+      $scope.remedios = JSON.parse(data.data);
     }
 
-    $scope.controllerEspecialista = function() {
-      var landingUrl = "http://" + $window.location.host + "/especialista";
-      $window.location.href = landingUrl;
+    function fungetremedioserror(err) {
+      console.log(err)
     }
+    $http.get('/jsonEnfermedades').then(function(data) {
+      console.log(data.data);
+      $scope.enfermedades = JSON.parse(data.data);
+    }, function(err) {
+      console.log(err);
+    })
+
+    $http.get('/jsonComboDependiente').then(function(data) {
+      console.log(data.data);
+      $scope.combodep = JSON.parse(data.data);
+    }, function(err) {
+      console.log(err);
+    })
+	  $scope.regionactual = $scope.combodep[0];
+    $scope.$watch('regionactual', function(value, oldValue){
+       $scope.ciudadactual = value.Items[0];
+    });
   }])

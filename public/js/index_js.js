@@ -14,14 +14,14 @@ function inicializarEdades() {
   var edad = document.getElementById("seleccionar-edad");
   var i = 0
   for(i = 0; i<=100; i++) {
-      edad.innerHTML = edad.innerHTML + '<option value="edad' + i + '">'+ i + '</option> ';
+      edad.innerHTML = edad.innerHTML + '<option ng-model="edad" value='+i+'>'+ i + '</option> ';
 
   }
   edad.innerHTML = edad.innerHTML + '<option value="edadmas100">101+</option> ';
 }
 function onPanel(yo) {
     var yourSelect = document.getElementById( "seleccionar-ciudad" );
-    if (yourSelect.options[ yourSelect.selectedIndex ].value == "Seleccione") {
+    if (yourSelect.options[ yourSelect.selectedIndex ].value == "Seleccione" ||  yourSelect.options[ yourSelect.selectedIndex ].value == null) {
         alert("No ha seleccionado la ciudad");
         //$('.abrirConCiudad').collapse('show');
         $('.abrirConCiudad').collapse('hide');

@@ -65,8 +65,10 @@
   <br/>
   <br/>
   <form action="/remedio" method="POST">
+    <input name="remedio" type="hidden" value=<%= nombre2 %>>
   <% if(logina == false) {%>
   Usted no puede comentar, por favor loguearse
+    <input class="btn btn-primary" id="Registrarse" name="submit" type=submit value="Registrarse"/>
 
     <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Loguearse"/>
 
@@ -81,7 +83,9 @@
     </div>
     <div class="row row-centered">
       <div class="col-xs-12 col-sm-6">
+
         <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Loguearse"/>
+        <input class="btn btn-primary" id="Salir" name="submit" type=submit value="Salir"/>
       </div>
       <div class="col-xs-12 col-sm-6">
         <input class="btn btn-primary" id="IngresarComentario" name="submit" type=submit value="Comentar"/>

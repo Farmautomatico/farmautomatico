@@ -14,27 +14,18 @@
     <link rel="stylesheet" href="css/estilos_personalizados.css" />
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
-        <link href="css/roboto.min.css" rel="stylesheet">
-        <link href="css/material.min.css" rel="stylesheet">
-        <link href="css/ripples.min.css" rel="stylesheet">
-        <link href="css/estilos_personalizados.css" rel="stylesheet">
-  </head>
-  <body>
-      <div class="row row-centered">
-            <img id="logo" src="images/logo.jpg" alt="logo" />
-      </div>
-
-      <br />
-      <br />
-    -->
 
       <div class="row row-centered">
         <h2>Farmacias</h2>
 
 
-              <form onSubmit="return getListafarmacias();">
+              <form method="GET" action="farmaciaformulario">
                 <label class="inline">Seleccione:</label><br/><br/>
-                <input type="radio" name="farmacias" value="todas" id="todas"><label for="todas">Todas</label><span data-tooltip aria-haspopup="true" class="has-tip" title="Todas, incluyendo las de turno"></span></input><br/><br/>
+                <input type="radio" name="farmacias" value="todas" id="todas">
+                <label for="todas">Todas</label>
+                <span data-tooltip aria-haspopup="true" class="has-tip" title="Todas, incluyendo las de turno">
+                </span></input><br/><br/>
+
                 <input type="radio" name="farmacias" value="deTurno" id="deTurno"><label for="deTurno">De turno</label> <span data-tooltip aria-haspopup="true" class="has-tip" title="Sólo las de turno, que atienden las 24 horas"></span></input><br/><br/>
                      <select id="sel-marca" class="inline">
                       <option value="Todas">Todas</option>
@@ -44,7 +35,7 @@
                      <option value="DrSimi">Sr Simi</option>
                     </select> <span data-tooltip aria-haspopup="true" class="has-tip" title="Todas es por defecto"></span><br/><br/>
 
-				<input class="button postfix inline" type=submit id="farmacias-submit" value="Ir" />
+				<input class="btn btn-primary" type=submit id="farmacias-submit" value="Ir" />
         <div class="row row-centered" id="ListaFarmacias">
 
           </div>

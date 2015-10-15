@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    indexCiudad,
     db = require('../models');
 
 module.exports = function(app) {
@@ -20,81 +21,75 @@ module.exports = function(app) {
 
     var telefono;
     router.get('/centrosmedicos', function(req, res, next) {
-        //console.log(req);
-        var indexCiudad = ciudad;
-        //console.log(indexCiudad);
-        //console.log(req);
-        
-        console.log(req.query.centrosMedicos);
-        if (req.query.centrosMedicos != undefined) {
-            switch (req.query.centrosMedicos) {
-                case 'Privados':
-                    db.centrosmedicos.encontrarPrivados(indexCiudad).then(callbackmain);
-                    break;
-                case 'Publicos':
-                    db.centrosmedicos.encontrarPublicos(indexCiudad).then(callbackmain);
-                    break;
-                default:
-                    db.centrosmedicos.encontrarTodos(indexCiudad).then(callbackmain);
-                    break;
-            }
-
-        } else {
             res.render('centrosmedicos', {
 
                 title: "Farmautomático",
-                cmedicos: []
+                cmedicos: [],
+                ciudad: req.query.ciudad
 
             });
-
-        }
-
-
-        function callbackmain(resul) {
-            var data = [],
-                telef = [];
-            console.log(resul);
-            for (var i = 0; i < resul.length; i++) {
-                //db.telefonocm.encontrar(resul[i].idCentrosMedicos).then(callbackfor);
-                var dataint = [];
-                telef.push(resul[i].telefono);
-                if ((i < resul.length - 1) && (resul[i].idCentrosMedicos != resul[i + 1].idCentrosMedicos)) {
-                    data.push([
-                        resul[i].nombre,
-                        resul[i].Direccion,
-                        telef
-                    ]);
-                    telef = [];
-                }
-                if (i == resul.length - 1) {
-                    data.push([
-                        resul[i].nombre,
-                        resul[i].Direccion,
-                        telef
-                    ])
-
-                }
-                /*data.push([
-						resul[i].nombre,
-						resul[i].Direccion,
-						telef
-					])*/
-
-
-
-
-
-
-
-            }
-            console.log(data);
-            res.render('centrosmedicos', {
-
-                title: "Farmautomático",
-                cmedicos: data
-
-            });
-        }
     });
+    router.get('/centrosmedicosformulario', function(req, res, next) {
+      indexCiudad = req.query.ciudad;
+          switch (req.query.centrosMedicos) {
+              case 'Privados':
+                  db.centrosmedicos.encontrarPrivados(indexCiudad).then(callbackcmform);
+                  break;
+              case 'Publicos':
+                  db.centrosmedicos.encontrarPublicos(indexCiudad).then(callbackcmform);
+                  break;
+              default:
+                  db.centrosmedicos.encontrarTodos(indexCiudad).then(callbackcmform);
+                  break;
+          }
+
+
+      function callbackcmform(resul) {
+          var data = [],
+              telef = [];
+          console.log(resul);
+          for (var i = 0; i < resul.length; i++) {
+              //db.telefonocm.encontrar(resul[i].idCentrosMedicos).then(callbackfor);
+              var dataint = [];
+              telef.push(resul[i].telefono);
+              if ((i < resul.length - 1) && (resul[i].idCentrosMedicos != resul[i + 1].idCentrosMedicos)) {
+                  data.push([
+                      resul[i].nombre,
+                      resul[i].direccion,
+                      telef
+                  ]);
+                  telef = [];
+              }
+              if (i == resul.length - 1) {
+                  data.push([
+                      resul[i].nombre,
+                      resul[i].direccion,
+                      telef
+                  ])
+
+              }
+              /*data.push([
+          resul[i].nombre,
+          resul[i].Direccion,
+          telef
+        ])*/
+
+
+
+
+
+
+
+          }
+          console.log(data);
+          res.render('centrosmedicos', {
+
+              title: "Farmautomático",
+              cmedicos: data,
+              ciudad: req.query.ciudad
+
+          });
+      }
+    })
 
 };

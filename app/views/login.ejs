@@ -23,6 +23,7 @@
       <br>
       <br>
       <form action="login" method="post">
+        <input name="remedio" type="hidden" value=<%=nombre_remedio%> >
       <div class="container">
         <div class="col-xs-0 col-sm-0 col-md-4 col-centered"></div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-centered">
@@ -39,6 +40,8 @@
 				</div>
 				<div class="col-xs-12 col-sm-12">
 				  <input class="btn btn-primary pull-right" name="submit" type="submit" id="especialista-submit" value="Ingresar"><i class="fa fa-lock"></i></input>
+          <input class="btn btn-primary" id="Registrarse" name="submit" type=submit value="Registrarse"/>
+          <input class="btn btn-primary" id="Salir" name="submit" type=submit value="Salir"/>
 
 				</div>
 			  </div>

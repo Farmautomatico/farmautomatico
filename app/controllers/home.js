@@ -18,7 +18,9 @@ module.exports = function (app) {
 
     router.get('/', function (req, res, next) {
         //console.log(db.comunas);
-        db.comunas.encontrar().then(function (filas) {
+        db.comunas.encontrarComunas().then(function (filas) {
+
+
 
 
             console.log(filas);
@@ -34,12 +36,11 @@ module.exports = function (app) {
                 title: "Farmautomático",
                 controllerangular: "indexController",
                 indices : indicesCiudades,
-                ciudades: arreglociudades
+                ciudades: arreglociudades,
             });
         });
-
     });
-
+/*
     router.post('/', function (req, res, next) {
 
         //req.session.name = req.body.name;
@@ -52,6 +53,8 @@ module.exports = function (app) {
         //remediosel = req.body.remedios;
         remediosel = req.body.remedios;
         ciudad = req.body.seleccionCiudad;
+        edad = req.body.edad;
+        enfermedad = req.body.enfermedad;
         //res.send("hola");
         switch (req.body.submit) {
             case "Al Especialista":
@@ -87,5 +90,5 @@ module.exports = function (app) {
 
 
 	//}
-    })
+})*/
 };

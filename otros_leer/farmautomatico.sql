@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: farmautomatico
 -- ------------------------------------------------------
--- Server version	5.6.25-log
+-- Server version	5.6.26-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `centrosmedicos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `centrosmedicos` (
   `idCentrosMedicos` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   `comunas_idcomunas` int(11) NOT NULL,
-  `Direccion` varchar(100) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
   `esPublico` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idCentrosMedicos`),
   KEY `fk_CentrosMedicos_comunas1_idx` (`comunas_idcomunas`),
@@ -72,6 +72,141 @@ INSERT INTO `comunas` VALUES (1,'ARICA',15),(2,'IQUIQUE',1),(3,'HUARA',1),(4,'PI
 UNLOCK TABLES;
 
 --
+-- Table structure for table `enfermedad`
+--
+
+DROP TABLE IF EXISTS `enfermedad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `enfermedad` (
+  `nombre_enfermedad` varchar(45) NOT NULL,
+  PRIMARY KEY (`nombre_enfermedad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enfermedad`
+--
+
+LOCK TABLES `enfermedad` WRITE;
+/*!40000 ALTER TABLE `enfermedad` DISABLE KEYS */;
+INSERT INTO `enfermedad` VALUES ('Asma'),('Astigmatismo'),('Autismo'),('Ciática'),('Cirrosis'),('Cistitis'),('Cólera'),('Daltinismo'),('Ébola'),('Faringitis'),('Gastritis'),('Hipotermia'),('Insomnio'),('Juanetes'),('Lumbalgia'),('Migraña'),('Neumonía'),('Osteoporosis'),('Pancreatitis'),('Párkinson'),('Quemaduras'),('Rabia'),('Resfriado'),('Sarampión'),('Sindrome de Raynaud'),('Terremotos'),('Úlcera'),('Vértigo');
+/*!40000 ALTER TABLE `enfermedad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `enfermedades_tiene_especialistas`
+--
+
+DROP TABLE IF EXISTS `enfermedades_tiene_especialistas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `enfermedades_tiene_especialistas` (
+  `enfermedad_nombre_enfermedad` varchar(45) NOT NULL,
+  `especialistas_id_especialista` int(11) NOT NULL,
+  PRIMARY KEY (`enfermedad_nombre_enfermedad`,`especialistas_id_especialista`),
+  KEY `fk_enfermedades_tiene_especialistas_especialistas1_idx` (`especialistas_id_especialista`),
+  CONSTRAINT `fk_enfermedades_tiene_especialistas_enfermedad1` FOREIGN KEY (`enfermedad_nombre_enfermedad`) REFERENCES `enfermedad` (`nombre_enfermedad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_enfermedades_tiene_especialistas_especialistas1` FOREIGN KEY (`especialistas_id_especialista`) REFERENCES `especialistas` (`id_especialista`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enfermedades_tiene_especialistas`
+--
+
+LOCK TABLES `enfermedades_tiene_especialistas` WRITE;
+/*!40000 ALTER TABLE `enfermedades_tiene_especialistas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `enfermedades_tiene_especialistas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `enfermedads`
+--
+
+DROP TABLE IF EXISTS `enfermedads`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `enfermedads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_enfermedad` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `enfermedads`
+--
+
+LOCK TABLES `enfermedads` WRITE;
+/*!40000 ALTER TABLE `enfermedads` DISABLE KEYS */;
+/*!40000 ALTER TABLE `enfermedads` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `especialistas`
+--
+
+DROP TABLE IF EXISTS `especialistas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `especialistas` (
+  `id_especialista` int(11) NOT NULL,
+  `nombre_especialista` varchar(45) DEFAULT NULL,
+  `contraseña` varchar(45) DEFAULT NULL,
+  `foto` varchar(50) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `especialidad` varchar(45) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `comunas_idcomunas` int(11) NOT NULL,
+  PRIMARY KEY (`id_especialista`),
+  KEY `fk_especialistas_comunas1_idx` (`comunas_idcomunas`),
+  CONSTRAINT `fk_especialistas_comunas1` FOREIGN KEY (`comunas_idcomunas`) REFERENCES `comunas` (`idcomunas`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `especialistas`
+--
+
+LOCK TABLES `especialistas` WRITE;
+/*!40000 ALTER TABLE `especialistas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `especialistas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `farmacia`
+--
+
+DROP TABLE IF EXISTS `farmacia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `farmacia` (
+  `nombre` int(11) NOT NULL,
+  `turno` varchar(45) DEFAULT NULL,
+  `comunas_idcomunas` int(11) NOT NULL,
+  `coordenada1` int(11) DEFAULT NULL,
+  `coordenada2` int(11) DEFAULT NULL,
+  `hora_atencion` varchar(45) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`nombre`),
+  KEY `fk_farmacia_comunas1_idx` (`comunas_idcomunas`),
+  CONSTRAINT `fk_farmacia_comunas1` FOREIGN KEY (`comunas_idcomunas`) REFERENCES `comunas` (`idcomunas`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `farmacia`
+--
+
+LOCK TABLES `farmacia` WRITE;
+/*!40000 ALTER TABLE `farmacia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `farmacia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `regiones`
 --
 
@@ -104,11 +239,11 @@ DROP TABLE IF EXISTS `remedios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `remedios` (
   `nombre` varchar(100) NOT NULL,
-  `indicaciones` varchar(1000) DEFAULT NULL,
-  `contraindicaciones` varchar(1000) DEFAULT NULL,
-  `conservacion` varchar(1000) DEFAULT NULL,
-  `interacciones` varchar(1000) DEFAULT NULL,
-  `otrosdatos` varchar(2000) DEFAULT NULL,
+  `indicaciones` text,
+  `contraindicaciones` text,
+  `conservacion` text,
+  `interacciones` text,
+  `otrosdatos` text,
   PRIMARY KEY (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -121,36 +256,6 @@ LOCK TABLES `remedios` WRITE;
 /*!40000 ALTER TABLE `remedios` DISABLE KEYS */;
 INSERT INTO `remedios` VALUES ('Loratadina','para la alergia','no se','En lugar Fresco y seco','ninguna',NULL),('Omeprazol','Para el reflujo','No comer por un rato','En lugar Fresco y seco','Con la comida','ninguno');
 /*!40000 ALTER TABLE `remedios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `remedios_comenta_usuarios`
---
-
-DROP TABLE IF EXISTS `remedios_comenta_usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `remedios_comenta_usuarios` (
-  `idcomentarios` int(11) NOT NULL AUTO_INCREMENT,
-  `remedios_nombre` varchar(100) NOT NULL,
-  `usuario_idusuario` int(11) NOT NULL,
-  `comentario` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`idcomentarios`,`remedios_nombre`,`usuario_idusuario`),
-  KEY `fk_remedios_has_usuario_usuario1_idx` (`usuario_idusuario`),
-  KEY `fk_remedios_comenta_usuarios_remedios1_idx` (`remedios_nombre`),
-  CONSTRAINT `fk_remedios_comenta_usuarios_remedios1` FOREIGN KEY (`remedios_nombre`) REFERENCES `remedios` (`nombre`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_remedios_has_usuario_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `remedios_comenta_usuarios`
---
-
-LOCK TABLES `remedios_comenta_usuarios` WRITE;
-/*!40000 ALTER TABLE `remedios_comenta_usuarios` DISABLE KEYS */;
-INSERT INTO `remedios_comenta_usuarios` VALUES (1,'Loratadina',1,'Este es mi primer comentario en loratadina'),(2,'Omeprazol',1,'Este es mi primer comentario, ingresado desde a BD'),(3,'Omeprazol',2,'Este es mi primer comentario aburrido'),(4,'Loratadina',2,'ingresado desde la consola'),(5,'Omeprazol',1,'Ingrese su comentario'),(6,'Omeprazol',1,'Ingrese su comentario'),(7,'Omeprazol',1,'Ingrese su comentario'),(8,'Loratadina',2,'Blablabla ingresado desde la página'),(9,'Loratadina',2,'Blablabla ingresado desde la página');
-/*!40000 ALTER TABLE `remedios_comenta_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -180,6 +285,56 @@ INSERT INTO `telefonocm` VALUES ('2761551',1),('2711265',2),('2422797',3),('2511
 UNLOCK TABLES;
 
 --
+-- Table structure for table `telefonoespecialista`
+--
+
+DROP TABLE IF EXISTS `telefonoespecialista`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `telefonoespecialista` (
+  `telefono` varchar(20) NOT NULL,
+  `especialistas_id_especialista` int(11) NOT NULL,
+  PRIMARY KEY (`telefono`,`especialistas_id_especialista`),
+  KEY `fk_telefonoEspecialista_especialistas1_idx` (`especialistas_id_especialista`),
+  CONSTRAINT `fk_telefonoEspecialista_especialistas1` FOREIGN KEY (`especialistas_id_especialista`) REFERENCES `especialistas` (`id_especialista`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `telefonoespecialista`
+--
+
+LOCK TABLES `telefonoespecialista` WRITE;
+/*!40000 ALTER TABLE `telefonoespecialista` DISABLE KEYS */;
+/*!40000 ALTER TABLE `telefonoespecialista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `telefonofarmacia`
+--
+
+DROP TABLE IF EXISTS `telefonofarmacia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `telefonofarmacia` (
+  `telefono` varchar(20) NOT NULL,
+  `farmacia_nombre` int(11) NOT NULL,
+  PRIMARY KEY (`telefono`,`farmacia_nombre`),
+  KEY `fk_telefonoFarmacia_farmacia1_idx` (`farmacia_nombre`),
+  CONSTRAINT `fk_telefonoFarmacia_farmacia1` FOREIGN KEY (`farmacia_nombre`) REFERENCES `farmacia` (`nombre`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `telefonofarmacia`
+--
+
+LOCK TABLES `telefonofarmacia` WRITE;
+/*!40000 ALTER TABLE `telefonofarmacia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `telefonofarmacia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -189,8 +344,9 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
-  `foto` varchar(45) DEFAULT NULL,
+  `foto` varchar(40) DEFAULT NULL,
   `contrasena` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -201,8 +357,66 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Erick','fotoerick.jpg','farmautomatico'),(2,'Jorge','fotojorge.jpg','farmautomatico');
+INSERT INTO `usuarios` VALUES (1,'Erick','fotoerick.jpg','farmautomatico',NULL),(2,'Jorge','fotojorge.jpg','farmautomatico',NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_comenta_remedio`
+--
+
+DROP TABLE IF EXISTS `usuarios_comenta_remedio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_comenta_remedio` (
+  `idcomentarios` int(11) NOT NULL AUTO_INCREMENT,
+  `remedios_nombre` varchar(100) NOT NULL,
+  `usuario_idusuario` int(11) NOT NULL,
+  `comentario` varchar(500) DEFAULT NULL,
+  `fecha_comentario` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idcomentarios`,`remedios_nombre`,`usuario_idusuario`),
+  KEY `fk_remedios_has_usuario_usuario1_idx` (`usuario_idusuario`),
+  KEY `fk_remedios_comenta_usuarios_remedios1_idx` (`remedios_nombre`),
+  CONSTRAINT `fk_remedios_comenta_usuarios_remedios1` FOREIGN KEY (`remedios_nombre`) REFERENCES `remedios` (`nombre`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_remedios_has_usuario_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_comenta_remedio`
+--
+
+LOCK TABLES `usuarios_comenta_remedio` WRITE;
+/*!40000 ALTER TABLE `usuarios_comenta_remedio` DISABLE KEYS */;
+INSERT INTO `usuarios_comenta_remedio` VALUES (1,'Loratadina',1,'Este es mi primer comentario en loratadina','2015-09-24 23:33:00'),(2,'Omeprazol',1,'Este es mi primer comentario, ingresado desde a BD','2015-09-24 23:33:00'),(3,'Omeprazol',2,'Este es mi primer comentario aburrido','2015-09-24 23:33:00'),(4,'Loratadina',2,'ingresado desde la consola','2015-09-24 23:33:00'),(5,'Omeprazol',1,'Ingrese su comentario','2015-09-24 23:33:00'),(6,'Omeprazol',1,'Ingrese su comentario','2015-09-24 23:33:00'),(7,'Omeprazol',1,'Ingrese su comentario','2015-09-24 23:33:00'),(8,'Loratadina',2,'Blablabla ingresado desde la página','2015-09-24 23:33:00'),(9,'Loratadina',2,'Blablabla ingresado desde la página','2015-09-24 23:33:00');
+/*!40000 ALTER TABLE `usuarios_comenta_remedio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_comenta_remedios`
+--
+
+DROP TABLE IF EXISTS `usuarios_comenta_remedios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_comenta_remedios` (
+  `idcomentarios` int(11) NOT NULL AUTO_INCREMENT,
+  `remedios_nombre` varchar(255) DEFAULT NULL,
+  `usuario_idusuario` int(11) DEFAULT NULL,
+  `comentario` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`idcomentarios`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_comenta_remedios`
+--
+
+LOCK TABLES `usuarios_comenta_remedios` WRITE;
+/*!40000 ALTER TABLE `usuarios_comenta_remedios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios_comenta_remedios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -214,4 +428,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-18  4:53:13
+-- Dump completed on 2015-10-01 23:25:28
