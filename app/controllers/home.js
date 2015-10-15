@@ -18,7 +18,9 @@ module.exports = function (app) {
 
     router.get('/', function (req, res, next) {
         //console.log(db.comunas);
-        db.comunas.encontrar().then(function (filas) {
+        db.comunas.encontrarComunas().then(function (filas) {
+
+
 
 
             console.log(filas);
@@ -34,10 +36,9 @@ module.exports = function (app) {
                 title: "Farmautomático",
                 controllerangular: "indexController",
                 indices : indicesCiudades,
-                ciudades: arreglociudades
+                ciudades: arreglociudades,
             });
         });
-
     });
 /*
     router.post('/', function (req, res, next) {

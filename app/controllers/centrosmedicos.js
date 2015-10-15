@@ -55,7 +55,7 @@ module.exports = function(app) {
               if ((i < resul.length - 1) && (resul[i].idCentrosMedicos != resul[i + 1].idCentrosMedicos)) {
                   data.push([
                       resul[i].nombre,
-                      resul[i].Direccion,
+                      resul[i].direccion,
                       telef
                   ]);
                   telef = [];
@@ -63,7 +63,7 @@ module.exports = function(app) {
               if (i == resul.length - 1) {
                   data.push([
                       resul[i].nombre,
-                      resul[i].Direccion,
+                      resul[i].direccion,
                       telef
                   ])
 
