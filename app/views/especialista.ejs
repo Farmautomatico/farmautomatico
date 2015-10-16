@@ -22,7 +22,7 @@
 	</div>
 	<br/>
 	<br/>
-	
+
 	<form class="" action="especialistaformulario" method="GET">
 
 		<input name="enfermedad" value<%=enfermedad%> type="hidden">
@@ -35,14 +35,16 @@
 		</div>
 		<div class="form">
 			<ul class="a">
-				<p>Especialista:
+				<p>Especialidad:
 				<span id="Especialidad">
-				<select id="especialidad">
-				  <option value="Seleccione">Todos</option>
-				  <option value="odontologo">Odontólogo</option>
-				  <option value="kinesiologo">Kinesiólogo</option>
-				  <option value="cirujano">Cirujano</option>
+
+				<select ng-model="especialidades" onchange="cambioSelect(this);" class="form-control" name='especialidades' id="especialidades">
+					<option value="Todas">Todas</option>
+					<% for(var i=0; i<especialidades.length; i++) {%>
+						<option value=<%= especialidades[i]%></option>
+					<% } %>
 				</select>
+				
 				</span>
 				</p>
 			<input class="btn btn-primary " type="submit" name="submit" value="Ir">
