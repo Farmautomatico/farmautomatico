@@ -19,21 +19,22 @@ module.exports = function (app) {
 
 
 	// METODOS PARA LISTA DE ESPECIALISTAS
+  /*
 	router.get('/especialista', function (req, res, next) {
 
 		res.render('especialista', {
 			title: "Farmautomático",
 			especialistas: [],
 			ciudad: req.query.ciudad,
-			especialidad: req.query.especialidad,
+			especialidades: req.query.especialidad,
 			enfermedad: req.query.enfermedad,
 			edad: req.query.edad
          });
-	});
+	});*/
 
 	router.get('/especialistaformulario', function (req, res, next) {
 		ciudad = req.query.ciudad;
-		enfermadad = req.query.enfermedad;
+		enfermedad = req.query.enfermedad;
 		edad = req.query.edad;
 		especialidad = req.query.especialidad;
 		
@@ -45,7 +46,7 @@ module.exports = function (app) {
                   db.especialista.encontrarEspecialistaEspecialidad(ciudad, enfermedad, edad, especialidad).then(callbackcmform);
                   break;
           }
-    }
+    
 
 	function callbackcmform(resul) {
           var data = [], telef = [];
@@ -74,25 +75,25 @@ module.exports = function (app) {
               }
           }
           console.log(data);
-          res.render('especialistas', {
-              title: "Farmautomático",
-              especialistas: data,
-              ciudad: req.query.ciudad,
-        	  especialidad: req.query.especialidad,
-			  enfermadad: req.query.enfermedad,
-			  edad: req.query.enfermadad
+          res.render('especialista', {
+            title: "Farmautomatico",
+        	  especialidades: req.query.especialidad,
+			  enfermedad: req.query.enfermedad,
+			  edad: req.query.enfermedad,
+        especialistas: [],
+        ciudad: req.query.ciudad
           });
       }
-
+})
 	
 	// METODOS PARA EL COMBO
 	
-	router.get('/especialidades', function (req, res, next) {
+	router.get('/especialista', function (req, res, next) {
 		ciudad = req.query.ciudad;
-		enfermadad = req.query.enfermedad;
+		enfermedad = req.query.enfermedad;
 		edad = req.query.edad;		
 		db.especialista.encontrarEspecialidades(ciudad, enfermedad, edad).then(callbackcmform1);
-    }
+    
     
 
 	function callbackcmform1(resul_combo) {
@@ -100,20 +101,20 @@ module.exports = function (app) {
 		  console.log(resul_combo);
           for (var i = 0; i < resul_combo.length; i++) {
                   data.push([
-					resul_combo[i].especialidad,
+					resul_combo[i].especialidad
 				]);
           }
 	
           console.log(data);
-          res.render('especialidades', {
+          res.render('especialista', {
               title: "Farmautomático",
               especialidades: data,
-			  
+			        especialistas: [],
               ciudad: req.query.ciudad,
-        	  enfermadad: req.query.enfermedad,
-			  edad: req.query.enfermadad
+        	  enfermedad: req.query.enfermedad,
+			  edad: req.query.enfermedad
           });
      }
-    })
+    
 
-};
+})};

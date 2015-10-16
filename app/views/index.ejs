@@ -33,12 +33,16 @@
         <div class="col-xs-12 col-sm-12 col-lg-7 col-centered">
           <form action="/" method="post">
             <label for="seleccionar-ciudad">Seleccione su ciudad:</label>
-          <select ng-model="ciudad" onchange="cambioSelect(this);" class="form-control" name='seleccionCiudad' id="seleccionar-ciudad">
+            <select data-ng-model="regionactual" data-ng-options="region as region.Name for region in combodep"></select>
+
+            <select data-ng-model="ciudadactual" data-ng-options="ciudad as ciudad.Name for ciudad in regionactual.Items" id="seleccionar-ciudad" name='seleccionCiudad'></select>
+
+          <!--<select ng-model="ciudad" onchange="cambioSelect(this);" class="form-control" name='seleccionCiudad' id="seleccionar-ciudad">
             <option name= 'ciudad' value="Seleccione">Seleccione</option>
             <% for(var i=0; i<ciudades.length; i++) {%>
             <option  name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i]%></option>
             <% } %>
-          </select>
+          </select>-->
         </form>
         </div>
       </div>

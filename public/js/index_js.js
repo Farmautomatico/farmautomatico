@@ -21,7 +21,7 @@ function inicializarEdades() {
 }
 function onPanel(yo) {
     var yourSelect = document.getElementById( "seleccionar-ciudad" );
-    if (yourSelect.options[ yourSelect.selectedIndex ].value == "Seleccione") {
+    if (yourSelect.options[ yourSelect.selectedIndex ].value == "Seleccione" ||  yourSelect.options[ yourSelect.selectedIndex ].value == null) {
         alert("No ha seleccionado la ciudad");
         //$('.abrirConCiudad').collapse('show');
         $('.abrirConCiudad').collapse('hide');
