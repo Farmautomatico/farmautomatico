@@ -18,37 +18,34 @@ module.exports = function (app) {
 	app.use('/', router);
 
 
-	
+	// METODOS PARA LISTA DE ESPECIALISTAS
 	router.get('/especialista', function (req, res, next) {
-		
+
 		res.render('especialista', {
 			title: "Farmautomático",
 			especialistas: [],
 			ciudad: req.query.ciudad,
 			especialidad: req.query.especialidad,
-			enfermadad: req.query.enfermedad,
-			edad: req.query.enfermadad
+			enfermedad: req.query.enfermedad,
+			edad: req.query.edad
          });
 	});
-	router.get('/especialistaformulario', function (req, res, next) {
-		ciudad: req.query.ciudad,
-		enfermadad: req.query.enfermedad,
-		edad: req.query.enfermadad
 
+	router.get('/especialistaformulario', function (req, res, next) {
+		ciudad = req.query.ciudad;
+		enfermadad = req.query.enfermedad;
+		edad = req.query.edad;
+		especialidad = req.query.especialidad;
+		
 		switch (req.query.especialidad) {
-            case 'odontologo':
-                  db.especialista.encontrarEspecialistaOdontologo(ciudad, enfermedad, edad).then(callbackcmform);
+              case 'Todos':
+				  db.especialista.encontrarEspecialistaTodos(ciudad, enfermedad, edad).then(callbackcmform);
                   break;
-			case 'kinesiologo'
-                  db.especialista.encontrarEspecialistaKinesiologo(ciudad, enfermedad, edad).then(callbackcmform);
+              default:
+                  db.especialista.encontrarEspecialistaEspecialidad(ciudad, enfermedad, edad, especialidad).then(callbackcmform);
                   break;
-			case 'cirujano'
-                  db.especialista.encontrarEspecialistaCirujano(ciudad, enfermedad, edad).then(callbackcmform);
-                  break;
-            default:
-                  db.especialista.encontrarEspecialistaTodos(ciudad, enfermedad, edad).then(ciudad, enfermedad, edad);
-                  break;
-        }
+          }
+    }
 
 	function callbackcmform(resul) {
           var data = [], telef = [];
@@ -86,43 +83,37 @@ module.exports = function (app) {
 			  edad: req.query.enfermadad
           });
       }
+
+	
+	// METODOS PARA EL COMBO
+	
+	router.get('/especialidades', function (req, res, next) {
+		ciudad = req.query.ciudad;
+		enfermadad = req.query.enfermedad;
+		edad = req.query.edad;		
+		db.especialista.encontrarEspecialidades(ciudad, enfermedad, edad).then(callbackcmform1);
+    }
+    
+
+	function callbackcmform1(resul_combo) {
+          var data = [];
+		  console.log(resul_combo);
+          for (var i = 0; i < resul_combo.length; i++) {
+                  data.push([
+					resul_combo[i].especialidad,
+				]);
+          }
+	
+          console.log(data);
+          res.render('especialidades', {
+              title: "Farmautomático",
+              especialidades: data,
+			  
+              ciudad: req.query.ciudad,
+        	  enfermadad: req.query.enfermedad,
+			  edad: req.query.enfermadad
+          });
+     }
     })
 
 };
-/*
-var express = require('express'),
-  router = express.Router(),
-  db = require('../models');
-
-module.exports = function (app) {
-  app.use('/', router);
-};
-
-router.get('/especialista', function (req, res, next) {
-		//console.log(db.regiones);
-    console.log("estas son las variables de especialista, usarlas por favor")
-			console.log(req.query); //mirar cmd
-      /*
-      En el ejs hacer un <input name="ciudad" value<%=ciudad%> type="hidden">
-      y pasar la ciudad al render
-      (recordar qué dijo el profe)
-      para poder pasar la ciudad al req.query del get de abajo
-      (ver centrosmedicos)
-      *//*
-		    res.render('especialista', {
-
-		     title: "Farmautomático",
-		 });
-
-});
-
-router.get('/especialistaformulario', function (req, res, next) {
-		//console.log(db.regiones);
-    console.log("estas son las variables de especialistaformulario, usarlas por favor")
-		    res.render('especialista', {
-
-		     title: "Farmautomático",
-		 });
-
-});
-*/
