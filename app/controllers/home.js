@@ -18,27 +18,13 @@ module.exports = function (app) {
 
     router.get('/', function (req, res, next) {
         //console.log(db.comunas);
-        db.comunas.encontrarComunas().then(function (filas) {
-
-
-
-
-            console.log(filas);
-            var indicesCiudades = [];
-            var arreglociudades = [];
-            for (i = 0; i < filas[1].length; i++) {
-                arreglociudades.push("Region: (" + filas[1][i].regiones_idregiones + "), Comuna: " + filas[1][i].nombre);
-                indicesCiudades.push(filas[1][i].idcomunas);
-            }
-
             res.render('index', {
 
                 title: "Farmautomático",
                 controllerangular: "indexController",
-                indices : indicesCiudades,
-                ciudades: arreglociudades,
+                indices : [],
+                ciudades: []
             });
-        });
     });
 /*
     router.post('/', function (req, res, next) {

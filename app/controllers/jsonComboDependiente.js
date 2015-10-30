@@ -19,25 +19,32 @@ module.exports = function(app) {
 
   router.get('/jsonComboDependiente', function(req, res, next) {
     //console.log(db.comunas);
-    db.comunas.encontrarComunas().then(function(filas) {
-      db.comunas.encontrarRegiones().then(function(regionesres) {
+    db.comunas.findAll({
+      order: [
+        ['regiones_idregiones', 'ASC'],
+        ['nombre', 'ASC']
+      ]
+    }).then(function(filas) {
+      db.regiones.findAll().then(function(regionesres) {
+        //console.log(filas);
+        console.log(regionesres);
 
         arregloCombo = [];
-        for (i = 0; i < regionesres[1].length; i++) {
+        for (i = 0; i < regionesres.length; i++) {
           arregloCombo.push({
-            Id: regionesres[1][i].idregiones,
-            Name: regionesres[1][i].nombre,
+            Id: regionesres[i].dataValues.idregiones,
+            Name: regionesres[i].dataValues.nombre,
             Items: []
           });
         }
 
-        for (i = 0; i < filas[1].length; i++) {
+        for (i = 0; i < filas.length; i++) {
           for (j = 0; j < arregloCombo.length; j++) {
-            if (arregloCombo[j].Id == filas[1][i].regiones_idregiones) {
-              console.log(filas[1][i].idcomunas);
+            if (arregloCombo[j].Id == filas[i].dataValues.regiones_idregiones) {
+              console.log(filas[i].idcomunas);
               arregloCombo[j].Items.push({
-                Id: filas[1][i].idcomunas,
-                Name: filas[1][i].nombre
+                Id: filas[i].dataValues.idcomunas,
+                Name: filas[i].dataValues.nombre
               })
             }
           }

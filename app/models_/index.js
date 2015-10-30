@@ -13,12 +13,7 @@ var sequelize = new Sequelize('farmautomatico', 'farmautomatico', 'farmautomatic
     max: 50,
     min: 0,
     idle: 10
-  },
-  define: {
-        timestamps: false,
-        freezeTableName: true
   }
-
 });
 /*
 var sequelize = new Sequelize(config.db, "root", "", {
@@ -43,11 +38,7 @@ Object.keys(db).forEach(function (modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.remedios.hasMany(db.usuarios_comenta_remedio, {foreignKey: 'nombre'});
-db.usuarios_comenta_remedio.belongsTo(db.remedios, {foreignKey: 'remedios_nombre'});
 
-db.usuarios.hasMany(db.usuarios_comenta_remedio, {foreignKey: 'idusuario'});
-db.usuarios_comenta_remedio.belongsTo(db.usuarios, {foreignKey: 'usuario_idusuario'});
 
 
 module.exports = db;

@@ -1,27 +1,32 @@
-module.exports = function (sequelize, DataTypes) {
+/* jshint indent: 2 */
 
-  var remedios = sequelize.define('remedios', {
-    nombre: DataTypes.STRING,
-    indicaciones: DataTypes.STRING,
-    contraindicaciones: DataTypes.STRING,
-    conservacion: DataTypes.STRING,
-    interacciones: DataTypes.STRING,
-    otrosdatos: DataTypes.STRING
-  }, {
-    classMethods:    {
-      encontrarRemedios : function(v){ return sequelize
-                  .query('select * from remedios where nombre=?',
-                    { replacements: [v], type: sequelize.QueryTypes.SELECT })
-                  },
-      encontrarNombresRemedios : function(v){ return sequelize
-                  .query('select nombre from remedios',
-                    { type: sequelize.QueryTypes.SELECT })
-                  }
-                  //('SELECT * FROM centrosmedicos where \'ciudad='+ciudad+'\'', { raw: true })
-                 // .then(function(filas){console.log(filas); return filas;});
-
-      }
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('remedios', {
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true
+    },
+    indicaciones: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    contraindicaciones: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    conservacion: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    interacciones: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    otrosdatos: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
   });
-  return remedios
-
 };
+

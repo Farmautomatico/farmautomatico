@@ -1,25 +1,27 @@
-module.exports = function (sequelize, DataTypes) {
+/* jshint indent: 2 */
 
-  var usuarios = sequelize.define('usuarios', {
-    idusuario: DataTypes.INTEGER,
-    nombre: DataTypes.STRING,
-    foto: DataTypes.STRING,
-    contrasena: DataTypes.STRING
-  }, {
-    classMethods:    {
-      encontrarUsuarios : function(){ return sequelize
-                  .query('select * from usuarios',
-                    { type: sequelize.QueryTypes.SELECT })
-                  },
-      insertarUsuario : function(nombre, foto, contrasena, email){ return sequelize
-                  .query('insert into usuarios(nombre, foto, contrasena, email) values(?, ?, ?, ?)',
-                    { replacements: [nombre, foto, contrasena, email], raw: true , type: sequelize.QueryTypes.INSERT })
-                  }
-                  //('SELECT * FROM centrosmedicos where \'ciudad='+ciudad+'\'', { raw: true })
-                 // .then(function(filas){console.log(filas); return filas;});
-
-      }
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('usuarios', {
+    idusuario: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    foto: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    contrasena: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
-  return usuarios
-
 };

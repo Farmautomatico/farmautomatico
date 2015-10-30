@@ -13,12 +13,14 @@ module.exports = function (app) {
 
       router.get('/jsonEnfermedades', function (req, res, next) {
 
-        db.enfermedad.encontrarEnfermedades().then(function(nombreEnfermedad) {
+        db.enfermedad.findAll({
+          attributes: ['nombre_enfermedad']
+        }).then(function(nombreEnfermedad) {
           console.log("enfermedades");
           console.log(nombreEnfermedad);
           enfermedades=[];
           for(i in nombreEnfermedad){
-            enfermedades.push(nombreEnfermedad[i].nombre_enfermedad);
+            enfermedades.push(nombreEnfermedad[i].dataValues.nombre_enfermedad);
           }
           console.log(enfermedades);
           res.json(JSON.stringify(enfermedades));

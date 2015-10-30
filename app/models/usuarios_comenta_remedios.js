@@ -1,27 +1,31 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('centrosmedicos', {
-    idCentrosMedicos: {
+  return sequelize.define('usuarios_comenta_remedios', {
+    idcomentarios: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true
     },
-    nombre: {
+    remedios_nombre: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    comunas_idcomunas: {
+    usuario_idusuario: {
       type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    comentario: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
       allowNull: false
     },
-    direccion: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    esPublico: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   });
 };

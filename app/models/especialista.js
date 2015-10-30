@@ -1,37 +1,55 @@
-module.exports = function (sequelize, DataTypes) {
+/* jshint indent: 2 */
 
-  var especialista = sequelize.define('especialista', {
-
-	id_especialista: DataTypes.INTEGER,
-	nombre_especialista: DataTypes.STRING,
-	especialidad: DataTypes.STRING,
-	email: DataTypes.STRING,
-	direccion: DataTypes.STRING,
-	telefono: DataTypes.INTEGER,
-	contrasena: DataTypes.STRING,
-	fotoData: DataTypes.STRING,
-	comunas_idcomunas: DataTypes.INTEGER
-
-  }, {
-
-    classMethods:{
-			encontrarEspecialistaTodos: function(ciudadpasada, enfermedad, edad){ return sequelize
-				  .query('select * from especialistas as e join telefonoespecialista as t on e.id_especialista = t.especialistas_id_especialista where e.comunas_idcomunas= ? and e.id_especialista IN (select especialistas_id_especialista from enfermedades_tiene_especialistas where enfermedad_nombre_enfermedad= ?)',
-				  { raw: true, replacements: [ciudadpasada, enfermedad], type: sequelize.QueryTypes.SELECT })
-			},
-			encontrarEspecialistaEspecialidad: function(ciudadpasada, enfermedad, edad, especialidad){ return sequelize
-				  .query('select * from especialistas as e join telefonoespecialista as t on e.id_especialista = t.especialistas_id_especialista where e.comunas_idcomunas= ? and e.id_especialista IN (select especialistas_id_especialista from enfermedades_tiene_especialistas where enfermedad_nombre_enfermedad= ?) and e.especialidad = ?',
-				  { raw: true, replacements: [ciudadpasada, enfermedad, especialidad], type: sequelize.QueryTypes.SELECT })
-			},
-			
-			encontrarEspecialidades: function(ciudadpasada, enfermedad, edad){ return sequelize
-				  .query('select especialidad from especialistas as e where comunas_idcomunas= ? and e.id_especialista IN (select especialistas_id_especialista from enfermedades_tiene_especialistas where enfermedad_nombre_enfermedad= ?)',
-				  { raw: true, replacements: [ciudadpasada, enfermedad], type: sequelize.QueryTypes.SELECT })
-			}
-			
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('especialista', {
+    id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true
+    },
+    id_especialista: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    nombre_especialista: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    especialidad: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    telefono: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    contrasena: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    fotoData: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    comunas_idcomunas: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
-
   });
-	return especialista
-
 };

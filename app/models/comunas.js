@@ -1,23 +1,19 @@
-module.exports = function (sequelize, DataTypes) {
+/* jshint indent: 2 */
 
-  var comunas = sequelize.define('comunas', {
-    idcomunas: DataTypes.INTEGER,
-    nombre: DataTypes.STRING,
-    regiones_idregiones: DataTypes.INTEGER
-
-
-  }, {
-    classMethods:    {
-			encontrarComunas : function(){ return sequelize
-                  .query(' select * from comunas order by regiones_idregiones, nombre', { raw: true })
-                 // .then(function(filas){console.log(filas); return filas;});
-               },
-     encontrarRegiones : function(){ return sequelize
-                 .query('select * from regiones', { raw: true })
-                // .then(function(filas){console.log(filas); return filas;});
-              }
-
-      }
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('comunas', {
+    idcomunas: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    regiones_idregiones: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
+    }
   });
-	return comunas
 };

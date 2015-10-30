@@ -1,0 +1,2 @@
+npm install express serve-favicon morgan cookie-parser body-parser compression method-override glob sequelize mysql ejs cookie-session connect-multiparty --save
+npm install gulp gulp-nodemon gulp-livereload gulp-plumber --save-dev

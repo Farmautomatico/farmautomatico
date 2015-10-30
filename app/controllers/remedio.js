@@ -17,31 +17,46 @@ module.exports = function(app) {
       remedioseleccionado = req.session.remedio;
     };
     console.log(req.query);
-    db.remedios.encontrarRemedios(remedioseleccionado).then(function(resremedio) {
-      //var nombreRemedio = resremedio[0].nombre;
+    db.remedios.findOne({
+      where: {
+        nombre: remedioseleccionado
+      }
+    }).then(function(resremedio) {
+      //var nombreRemedio = resremedio.dataValues.nombre;
+      db.usuarios_comenta_remedio.findAll({
+        attributes: ['remedios_nombre',  'comentario'],
+        where: {
+          remedios_nombre: remedioseleccionado
+        },
+        order: [
+          ['fecha_comentario', 'DESC']
+        ],
+        include: [{model: db.usuarios, 
+          required: true,
+          attributes: [['foto', 'foto_usuario'], ['idusuario', 'idusuario'], ['nombre', 'nombre_usuario']]
+        }]
+      }).then(function(rescomentarios) {
 
-      db.usuarios_comenta_remedio.encontrarComentarios(remedioseleccionado).then(function(rescomentarios) {
 
 
-
-        console.log(req.body);
+        console.log(rescomentarios);
         var fotos = [],
           nombres_usuariosenc = [],
           comentarios = [],
           idcomentarios = [],
           comentarios_idusuarios = []
         for (i in rescomentarios) {
-          fotos.push(rescomentarios[i].foto_usuario ? "/public/imgsusuarios/" + rescomentarios[i].foto_usuario : "/public/imgsusuarios/caradehuevo.jpg");
-          nombres_usuariosenc.push(rescomentarios[i].nombre_usuario ? rescomentarios[i].nombre_usuario : "");
-          comentarios.push(rescomentarios[i].comentario ? rescomentarios[i].comentario : "");
-          console.log(rescomentarios[i].comentario);
-          idcomentarios.push("comentario/" + remedioseleccionado + "/" + rescomentarios[i].idcomentarios);
-          comentarios_idusuarios.push(rescomentarios[i].idusuario);
+          fotos.push(rescomentarios[i].usuario.dataValues.foto_usuario ? "/public/imgsusuarios/" + rescomentarios[i].usuario.dataValues.foto_usuario : "/public/imgsusuarios/caradehuevo.jpg");
+          nombres_usuariosenc.push(rescomentarios[i].usuario.dataValues.nombre_usuario ? rescomentarios[i].usuario.dataValues.nombre_usuario : "");
+          comentarios.push(rescomentarios[i].dataValues.comentario ? rescomentarios[i].dataValues.comentario : "");
+          console.log(rescomentarios[i].dataValues.comentario);
+          idcomentarios.push("comentario/" + remedioseleccionado + "/" + rescomentarios[i].dataValues.idcomentarios);
+          comentarios_idusuarios.push(rescomentarios[i].usuario.dataValues.idusuario);
         }
         console.log(comentarios);
         console.log(nombres_usuariosenc);
 
-        db.usuarios.encontrarUsuarios().then(function(resusuarios) {
+        db.usuarios.findAll().then(function(resusuarios) {
 
           var usuarios = {
             idusuario: [],
@@ -51,11 +66,11 @@ module.exports = function(app) {
 
           }
           for (i in resusuarios) {
-            usuarios.idusuario.push(resusuarios[i].idusuario);
-            usuarios.nombre.push(resusuarios[i].nombre);
-            usuarios.foto.push(resusuarios[i].foto);
-            if(req.session.name==resusuarios[i].nombre){
-              req.session.id=resusuarios[i].idusuario;
+            usuarios.idusuario.push(resusuarios[i].dataValues.idusuario);
+            usuarios.nombre.push(resusuarios[i].dataValues.nombre);
+            usuarios.foto.push(resusuarios[i].dataValues.foto);
+            if(req.session.name==resusuarios[i].dataValues.nombre){
+              req.session.id=resusuarios[i].dataValues.idusuario;
             }
 
 
@@ -70,13 +85,13 @@ module.exports = function(app) {
 
             title: "Farmautomático",
             //remedio
-            nombre: resremedio[0].nombre,
-            nombre2: resremedio[0].nombre,
-            indicaciones: resremedio[0].indicaciones,
-            contraindicaciones: resremedio[0].contraindicaciones,
-            conservacion: resremedio[0].conservacion,
-            interacciones: resremedio[0].interacciones,
-            otros: resremedio[0].otrosdatos,
+            nombre: resremedio.dataValues.nombre,
+            nombre2: resremedio.dataValues.nombre,
+            indicaciones: resremedio.dataValues.indicaciones,
+            contraindicaciones: resremedio.dataValues.contraindicaciones,
+            conservacion: resremedio.dataValues.conservacion,
+            interacciones: resremedio.dataValues.interacciones,
+            otros: resremedio.dataValues.otrosdatos,
             logina: login,
             idusuario: req.session.id,
             comentarios: comentarios,

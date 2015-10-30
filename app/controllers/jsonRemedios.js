@@ -12,10 +12,12 @@ module.exports = function (app) {
     app.use('/', router);
 
       router.get('/jsonRemedios', function (req, res, next) {
-        db.remedios.encontrarNombresRemedios().then(function(nombreRemedios) {
+        db.remedios.findAll({
+          attributes: ['nombre']
+        }).then(function(nombreRemedios) {
           remedios = [];
           for(i in nombreRemedios) {
-            remedios.push(nombreRemedios[i].nombre);
+            remedios.push(nombreRemedios[i].dataValues.nombre);
           }
           console.log(remedios);
             res.json(JSON.stringify(remedios));
