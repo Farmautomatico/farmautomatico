@@ -1,28 +1,4 @@
 <% include header %>
-<!--
-<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <head>
-
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <link href="css/roboto.min.css" rel="stylesheet">
-        <link href="css/material.min.css" rel="stylesheet">
-        <link href="css/ripples.min.css" rel="stylesheet">
-        <link href="css/estilos_personalizados.css" rel="stylesheet">
-    </head>
-
-    <body>
-      <br>
-      <br>
-      <div class="row row-centered">
-        <div class="col-xs-12 col-centered">
-          <img id="logo" src="images/logo.jpg" alt="logo" />
-
-        </div>
-      </div>
-    -->
       <br>
       <div ng-app="app">
 
@@ -36,12 +12,6 @@
             <select data-ng-model="regionactual" data-ng-options="region as region.Name for region in combodep"></select>
 
             <select data-ng-model="ciudadactual" data-ng-options="ciudad as ciudad.Name for ciudad in regionactual.Items" id="seleccionar-ciudad" name='seleccionCiudad'></select>
-
-          <!--<select ng-model="ciudad" onchange="cambioSelect(this);" class="form-control" name='seleccionCiudad' id="seleccionar-ciudad">
-            <option name= 'ciudad' value="Seleccione">Seleccione</option>
-            <% for(var i=0; i<ciudades.length; i++) {%>
-            <option  name= 'ciudad' value=<%= indices[i] %>><%= ciudades[i]%></option>
-            <% } %>
           </select>-->
         </form>
         </div>
@@ -59,7 +29,7 @@
           		</div>
           		<div id="panel1" class="panel-collapse collapse abrirConCiudad">
           			<div class="panel-body">
-                  <form action="/especialista" method="get">
+                  <form action="/especialista" method="get" autocomplete="off">
 
 
                   <div class="row">
@@ -133,7 +103,7 @@
           		</div>
           		<div id="panel3" class="panel-collapse collapse">
           			<div class="panel-body">
-                  <form action="/remedio" method="get">
+                  <form action="/remedio" method="get" autocomplete="off">
 
 
                   <div class="col-xs-12 col-sm-6">

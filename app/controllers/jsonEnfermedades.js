@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    consultasindex = require('../queries/queries.js'),
     db = require('../models');
 
 module.exports = function (app) {
@@ -12,12 +13,10 @@ module.exports = function (app) {
     app.use('/', router);
 
       router.get('/jsonEnfermedades', function (req, res, next) {
-
-        db.enfermedad.findAll({
-          attributes: ['nombre_enfermedad']
-        }).then(function(nombreEnfermedad) {
-          console.log("enfermedades");
-          console.log(nombreEnfermedad);
+        console.log(consultasindex);
+        consultasindex.index.buscarNombreEnfermedades.then(function(nombreEnfermedad) {
+          //console.log("enfermedades");
+          //console.log(nombreEnfermedad);
           enfermedades=[];
           for(i in nombreEnfermedad){
             enfermedades.push(nombreEnfermedad[i].dataValues.nombre_enfermedad);
@@ -26,18 +25,6 @@ module.exports = function (app) {
           res.json(JSON.stringify(enfermedades));
 
         })
-        /*db.remedios.encontrarNombresRemedios().then(function(nombreRemedios) {
-          remedios = [];
-          for(i in nombreRemedios) {
-            remedios.push(nombreRemedios[i].nombre);
-          }
-          console.log(remedios);
-            res.json(JSON.stringify(remedios));
-
-        })*/
-        //remedios = ['Omeprazol', 'Loratadina', 'Otro'];
-
-
 
       });
       router.post('/jsonEnfermedades', function (req, res, next) {

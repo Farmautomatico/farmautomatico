@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    db = require('../models');
+    db = require('../models'),
+    consultasindex = require('../queries/index.js');
 
 module.exports = function (app) {
 
@@ -12,9 +13,7 @@ module.exports = function (app) {
     app.use('/', router);
 
       router.get('/jsonRemedios', function (req, res, next) {
-        db.remedios.findAll({
-          attributes: ['nombre']
-        }).then(function(nombreRemedios) {
+        consultasindex.consultas.buscarRemedios.then(function(nombreRemedios) {
           remedios = [];
           for(i in nombreRemedios) {
             remedios.push(nombreRemedios[i].dataValues.nombre);
@@ -23,12 +22,5 @@ module.exports = function (app) {
             res.json(JSON.stringify(remedios));
 
         })
-        //remedios = ['Omeprazol', 'Loratadina', 'Otro'];
-
-
-
-      });
-      router.post('/jsonRemedios', function (req, res, next) {
-        console.log("esto no pasa");
       });
     }

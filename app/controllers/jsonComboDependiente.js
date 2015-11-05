@@ -1,5 +1,6 @@
 var express = require('express'),
   router = express.Router(),
+  consultasindex = require('../queries/index.js'),
   db = require('../models');
 
 module.exports = function(app) {
@@ -18,16 +19,8 @@ module.exports = function(app) {
   app.use('/', router);
 
   router.get('/jsonComboDependiente', function(req, res, next) {
-    //console.log(db.comunas);
-    db.comunas.findAll({
-      order: [
-        ['regiones_idregiones', 'ASC'],
-        ['nombre', 'ASC']
-      ]
-    }).then(function(filas) {
-      db.regiones.findAll().then(function(regionesres) {
-        //console.log(filas);
-        console.log(regionesres);
+    consultasindex.consultas.buscarComunas.then(function(filas) {
+      consultasindex.consultas.buscarRegiones.then(function(regionesres) {
 
         arregloCombo = [];
         for (i = 0; i < regionesres.length; i++) {
@@ -49,7 +42,6 @@ module.exports = function(app) {
             }
           }
         }
-        console.log(arregloCombo);
         res.json(JSON.stringify(arregloCombo));
       })
     })
